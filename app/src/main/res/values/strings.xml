@@ -1,0 +1,66 @@
+<resources>
+    <string name="app_name">Anti Covid</string>
+
+    <string name="button_call_now">call now</string>
+
+    <string name="error_parse_json">Type not supported</string>
+    <string name="error_get_data_api">First param should not be null, or you forgot passing one</string>
+    <string name="error_cash_class">Class not support</string>
+
+    <string name="msg_notification_on">You have turned on notifications</string>
+    <string name="msg_notification_off">You have turned off notification</string>
+    <string name="msg_search_fail">No result!</string>
+    <string name="msg_connection_fail">Please check your internet connection!</string>
+
+    <string name="radio_button_vietnamese">Vietnamese</string>
+    <string name="radio_button_worlds">Worlds</string>
+    <string name="radio_button_en">EN</string>
+    <string name="radio_button_vn">VN</string>
+
+    <string name="text_add_users_here">Add users here</string>
+    <string name="text_all_you_need">All you need</string>
+    <string name="text_is_stay_at_home">is stay at home</string>
+    <string name="text_case_update">Case Update</string>
+    <string name="text_see_detail">See Detail</string>
+    <string name="text_infected">Infected</string>
+    <string name="text_death">Death</string>
+    <string name="text_recovered">Recovered</string>
+    <string name="text_loading">Loading…</string>
+    <string name="text_information">%,d</string>
+    <string name="text_plus_information">+%,d</string>
+    <string name="text_sort">Sort</string>
+    <string name="text_hint_search_country">Search country…</string>
+    <string name="text_country_code">(%s)</string>
+    <string name="text_symptoms">Symptoms</string>
+    <string name="text_prevention_tips">Prevention tips</string>
+    <string name="text_are_you_fill_sick">Are you fill sick?</string>
+    <string name="text_head_notification">Have new %d infected</string>
+    <string name="text_body_notification">, %d death</string>
+    <string name="text_end_notification">, %d recovered in Viet Nam</string>
+    <string name="text_got_it">Got it!</string>
+    <string name="text_headache_content">You feel dizzy or nauseous.</string>
+    <string name="text_cough_content">You feel sore throat, difficulty breathing, or chest pain.</string>
+    <string name="text_fever_content">You feel tired, have a rash or become red or purple in your fingers or toes.</string>
+    <string name="text_wear_mask_content">When going out on the street you should wear a mask, so keep a safe distance when communicating.</string>
+    <string name="text_wash_hands_content">"Wash your hands often. Use soap and water or an alcohol-based hand sanitizer. Do not touch your eyes, nose or mouth. "</string>
+
+    <string name="title_activity_maps">Map</string>
+    <string name="title_statistics">Statistics</string>
+    <string name="title_home">Home</string>
+    <string name="title_news">News</string>
+    <string name="title_detail_counties_screen">Detail Countries</string>
+    <string name="title_news_screen">News</string>
+    <string name="title_notification">Update</string>
+    <string name="title_headche">Headache</string>
+    <string name="title_cough">Cough</string>
+    <string name="title_fever">Fever</string>
+    <string name="title_wear_face_mask">Wear face mask</string>
+    <string name="title_wash_your_hands">Wash your hands</string>
+    <string name="text_agree">Yes</string>
+    <string name="text_diagree">No</string>
+    <string name="text_notice">Notice!</string>
+    <string name="text_infor">Notification!</string>
+    <string name="text_content_infor">You should turn on notifications to receive the latest information about Covid-19 disease. Want to turn on notifications?</string>
+    <string name="text_notice_content">If you turn off notifications you will not receive the latest information about the Covid-19 epidemic. Do you want to turn off notifications?</string>
+    <string name="text_empty_edittext">Please enter search keywords!</string>
+</resources>
