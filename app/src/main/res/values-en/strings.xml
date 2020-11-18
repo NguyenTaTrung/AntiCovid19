@@ -51,8 +51,8 @@
     <string name="text_content_infor">You should turn on notifications to receive the latest information about Covid-19 disease. Want to turn on notifications?</string>
     <string name="text_notice_content">If you turn off notifications you will not receive the latest information about the Covid-19 epidemic. Do you want to turn off notifications?</string>
     <string name="text_empty_edittext">Please enter search keywords!</string>
-
     <string name="title_activity_main">MainActivity</string>
+
     <string name="title_activity_maps">Map</string>
     <string name="title_statistics">Statistics</string>
     <string name="title_home">Home</string>

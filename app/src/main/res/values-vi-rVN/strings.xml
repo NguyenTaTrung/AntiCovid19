@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Anti Covid-19</string>
+
+    <string name="button_call_now">Gọi Ngay</string>
+    <string name="button_send_sms">Gửi SMS</string>
+
+    <string name="error_parse_json">Kiểu không hỗ trợ</string>
+    <string name="error_get_data_api">Tham số đầu truyền vào không được null</string>
+    <string name="error_cash_class">Class không hỗ trợ</string>
+
+    <string name="msg_notification_on">Bạn cho phép hiển thị thông báo</string>
+    <string name="msg_notification_off">Bạn đã đã tắt hiển thị thông báo</string>
+    <string name="msg_search_fail">Không có kết quả!</string>
+    <string name="msg_connection_fail">Yêu cầu kiểm tra lại kết nối</string>
+
+    <string name="radio_button_vietnamese">Việt nam</string>
+    <string name="radio_button_worlds">Thế giới</string>
+    <string name="radio_button_en">EN</string>
+    <string name="radio_button_vn">VN</string>
+
+    <string name="text_add_users_here">Add users here</string>
+    <string name="text_all_you_need">Những gì bạn cần</string>
+    <string name="text_is_stay_at_home">là hãy ở trong nhà</string>
+    <string name="text_case_update">Cập nhật</string>
+    <string name="text_see_detail">Chi tiết</string>
+    <string name="text_infected">Nhiễm bệnh</string>
+    <string name="text_death">Tử vong</string>
+    <string name="text_recovered">Hồi phục</string>
+    <string name="text_loading">Loading…</string>
+    <string name="text_information">%,d</string>
+    <string name="text_plus_information">+%,d</string>
+    <string name="text_sort">Sắp xếp</string>
+    <string name="text_hint_search_country">Tìm kiếm quốc gia…</string>
+    <string name="text_country_code">(%s)</string>
+    <string name="text_symptoms">Triệu chứng</string>
+    <string name="text_prevention_tips">Các cách phòng ngừa</string>
+    <string name="text_are_you_fill_sick">Bạn có bị ốm không?</string>
+    <string name="text_head_notification">Có thêm %d người nhiễm</string>
+    <string name="text_body_notification">, %d người chết</string>
+    <string name="text_end_notification">, %d người hồi phục tại Việt Nam</string>
+    <string name="text_got_it">Đã hiểu!</string>
+    <string name="text_headache_content">Bạn cảm thấy chóng mặt hoặc buồn nôn.</string>
+    <string name="text_cough_content">Bạn cảm thấy đau họng, khó thở hoặc đau ngực.</string>
+    <string name="text_fever_content">Bạn cảm thấy mệt mỏi, nổi mẩn đỏ hoặc tím ở ngón tay hoặc ngón chân.</string>
+    <string name="text_wear_mask_content">Khi đi ra ngoài đường bạn nên đeo khẩu trang, nên giữ khoảng cách an toàn khi giao tiếp.</string>
+    <string name="text_wash_hands_content">Thường xuyên rửa tay, dùng xà phòng và nước hoặc dung dịch rửa tay chứa cồn.</string>
+    <string name="text_agree">Đồng ý</string>
+    <string name="text_diagree">Hủy bỏ</string>
+    <string name="text_notice">Chú ý!</string>
+    <string name="text_infor">Thông báo!</string>
+    <string name="text_content_infor">Bạn nên bật thông báo để nhận thông tin mới nhất về dịch bệnh Covid-19. Bạn muốn bật thông báo?</string>
+    <string name="text_notice_content">Nếu bạn tắt thông báo bạn sẽ không nhận được thông tin mới nhất về dịch bệnh Covid-19. Bạn có muốn tắt thông báo?</string>
+    <string name="text_empty_edittext">Hãy nhập từ khóa tìm kiếm!</string>
+
+    <string name="title_activity_main">MainActivity</string>
+    <string name="title_activity_maps">Map</string>
+    <string name="title_statistics">Thống kê</string>
+    <string name="title_home">Trang chủ</string>
+    <string name="title_news">Tin tức</string>
+    <string name="title_detail_counties_screen">Chi tiết các quốc gia</string>
+    <string name="title_news_screen">Tin tức</string>
+    <string name="title_notification">Cập nhật</string>
+    <string name="title_headche">Đau đầu</string>
+    <string name="title_cough">Ho</string>
+    <string name="title_fever">Sốt</string>
+    <string name="title_wear_face_mask">Đeo khẩu trang</string>
+    <string name="title_wash_your_hands">Rửa tay sạch</string>
+
+    <string name="text_description_question">Nếu bạn cảm thấy bị bệnh với bất kỳ triệu chứng covid-19 nào, vui lòng gọi hoặc nhắn tin cho chúng tôi ngay lập tức để được giúp đỡ.</string>
+    <string name="text_title_rag">Dùng khăn giấy</string>
+    <string name="text_content_rag">Khi bạn ho hoặc hắt hơi, hãy che mũi và miệng bằng khăn giấy hoặc bằng khuỷu tay.</string>
+    <string name="text_title_avoid_close_contact">Tránh tiếp xúc gần</string>
+    <string name="text_title_content_avoid_close_contact">Giữ khoảng cách an toàn với bất kỳ ai đang ho hoặc hắt hơi.</string>
+    <string name="text_statistic_char_by_week">Biểu đồ thống kê theo tuần</string>
+</resources>
