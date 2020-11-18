@@ -1,327 +1,500 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/colorPrimary">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guidelineTop"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toStartOf="@+id/imageViewDoctor"
-        app:layout_constraintGuide_percent="0.3"
-        app:layout_constraintStart_toStartOf="parent" />
+    <data>
 
-    <View
-        android:id="@+id/viewTop"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/guidelineTop"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        <import type="android.view.View" />
 
-    <ImageView
-        android:id="@+id/imageViewVirus"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginTop="@dimen/dp_30"
-        android:contentDescription="@null"
-        app:layout_constraintBottom_toBottomOf="@+id/viewTop"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/viewTop"
-        app:srcCompat="@drawable/img_virus" />
+        <variable
+            name="isVietNam"
+            type="Boolean" />
 
-    <ImageView
-        android:id="@+id/imageViewDoctor"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginTop="@dimen/dp_10"
-        android:contentDescription="@null"
-        app:layout_constraintBottom_toTopOf="@+id/radioGroupToggleInformation"
-        app:layout_constraintEnd_toStartOf="@+id/textViewStayAtHome"
-        app:layout_constraintStart_toEndOf="@+id/guidelineTop"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/img_drcorona" />
+        <variable
+            name="summary"
+            type="com.example.googlemap.data.model.Summary" />
 
-    <View
-        android:id="@+id/viewBottom"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:background="@drawable/view_bottom_background"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/viewTop" />
+        <variable
+            name="global"
+            type="com.example.googlemap.data.model.Global" />
 
-    <RadioGroup
-        android:id="@+id/radioGroupToggleInformation"
-        android:layout_width="0dp"
-        android:layout_height="@dimen/dp_50"
-        android:layout_marginStart="@dimen/dp_50"
-        android:layout_marginTop="@dimen/dp_20"
-        android:layout_marginEnd="@dimen/dp_50"
-        android:background="@drawable/radio_group_background"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/viewTop">
+        <variable
+            name="country"
+            type="com.example.googlemap.data.model.Country" />
 
-        <RadioButton
-            android:id="@+id/radioButtonVietnamese"
-            android:layout_width="0dp"
+        <variable
+            name="caseInformation"
+            type="com.example.googlemap.data.model.CaseInformation" />
+    </data>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginStart="@dimen/dp_1"
-            android:layout_marginTop="@dimen/dp_1"
-            android:layout_marginBottom="@dimen/dp_1"
-            android:layout_weight="1"
-            android:background="@drawable/radio_button_selected"
-            android:button="@null"
-            android:checked="true"
-            android:gravity="center"
-            android:text="@string/radio_button_vietnamese"
-            android:textColor="@android:color/white" />
+            android:background="@color/colorPrimary">
 
-        <RadioButton
-            android:id="@+id/radioButtonWorld"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_marginTop="@dimen/dp_1"
-            android:layout_marginEnd="@dimen/dp_1"
-            android:layout_marginBottom="@dimen/dp_1"
-            android:layout_weight="1"
-            android:background="@drawable/radio_button_selected"
-            android:button="@null"
-            android:gravity="center"
-            android:text="@string/radio_button_worlds"
-            android:textColor="@android:color/white" />
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guidelineTop"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.15" />
 
-    </RadioGroup>
+            <ImageButton
+                android:id="@+id/imageButtonNotification"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_20"
+                android:layout_marginEnd="@dimen/dp_30"
+                android:background="@android:color/transparent"
+                android:contentDescription="@null"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_notifications_white_24dp" />
 
-    <TextView
-        android:id="@+id/textViewAllYouNeed"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/text_all_you_need"
-        android:textColor="@android:color/white"
-        android:textSize="@dimen/sp_18"
-        app:layout_constraintBottom_toTopOf="@+id/textViewStayAtHome"
-        app:layout_constraintStart_toStartOf="@+id/textViewStayAtHome" />
+            <ImageView
+                android:id="@+id/imageViewVirus"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginTop="@dimen/dp_30"
+                android:contentDescription="@null"
+                app:layout_constraintBottom_toBottomOf="@+id/guidelineTop"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/img_virus" />
 
-    <TextView
-        android:id="@+id/textViewStayAtHome"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/text_is_stay_at_home"
-        android:textColor="@android:color/white"
-        android:textSize="@dimen/sp_18"
-        app:layout_constraintBottom_toTopOf="@+id/guidelineTop"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.8"
-        app:layout_constraintStart_toStartOf="@+id/viewTop"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.6" />
+            <ImageView
+                android:id="@+id/imageViewDoctor"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginTop="@dimen/dp_10"
+                android:contentDescription="@null"
+                app:layout_constraintBottom_toTopOf="@+id/radioGroupToggleInformation"
+                app:layout_constraintEnd_toStartOf="@+id/textViewStayAtHome"
+                app:layout_constraintStart_toEndOf="@+id/guidelineTop"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/img_drcorona" />
 
-    <TextView
-        android:id="@+id/textViewCaseUpdate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/dp_36"
-        android:layout_marginTop="@dimen/dp_24"
-        android:text="@string/text_case_update"
-        android:textColor="@android:color/black"
-        android:textSize="@dimen/sp_18"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/radioGroupToggleInformation" />
+            <View
+                android:id="@+id/viewBottom"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:background="@drawable/view_bottom_background"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/guidelineTop" />
 
-    <TextView
-        android:id="@+id/textViewUpdateTime"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/dp_36"
-        android:layout_marginTop="@dimen/dp_5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewCaseUpdate" />
+            <RadioGroup
+                android:id="@+id/radioGroupToggleInformation"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/dp_50"
+                android:layout_marginStart="@dimen/dp_50"
+                android:layout_marginTop="@dimen/dp_20"
+                android:layout_marginEnd="@dimen/dp_50"
+                android:background="@drawable/radio_group_background"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/guidelineTop">
 
-    <TextView
-        android:id="@+id/textViewSeeDetail"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/dp_36"
-        android:layout_marginEnd="@dimen/dp_36"
-        android:gravity="center"
-        android:text="@string/text_see_detail"
-        android:textColor="@color/colorAccent"
-        android:visibility="invisible"
-        app:drawableEndCompat="@drawable/ic_navigate_next_green_24dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/radioGroupToggleInformation" />
+                <RadioButton
+                    android:id="@+id/radioButtonVietnamese"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="@dimen/dp_1"
+                    android:layout_marginTop="@dimen/dp_1"
+                    android:layout_marginBottom="@dimen/dp_1"
+                    android:layout_weight="1"
+                    android:background="@drawable/radio_button_selected"
+                    android:button="@null"
+                    android:checked="true"
+                    android:gravity="center"
+                    android:text="@string/radio_button_vietnamese"
+                    android:textColor="@android:color/white" />
 
-    <View
-        android:id="@+id/viewStatistics"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="@dimen/dp_20"
-        android:layout_marginTop="@dimen/dp_20"
-        android:layout_marginEnd="@dimen/dp_20"
-        android:layout_marginBottom="@dimen/dp_20"
-        android:background="@drawable/view_background"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewUpdateTime"
-        app:layout_constraintVertical_bias="1.0" />
+                <RadioButton
+                    android:id="@+id/radioButtonWorld"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="@dimen/dp_1"
+                    android:layout_marginEnd="@dimen/dp_1"
+                    android:layout_marginBottom="@dimen/dp_1"
+                    android:layout_weight="1"
+                    android:background="@drawable/radio_button_selected"
+                    android:button="@null"
+                    android:gravity="center"
+                    android:text="@string/radio_button_worlds"
+                    android:textColor="@android:color/white" />
 
-    <TextView
-        android:id="@+id/textViewInfected"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/text_infected"
-        android:textColor="@android:color/black"
-        app:layout_constraintBottom_toBottomOf="@+id/viewStatistics"
-        app:layout_constraintEnd_toEndOf="@+id/textViewTotalInfected"
-        app:layout_constraintStart_toStartOf="@+id/textViewTotalInfected"
-        app:layout_constraintTop_toBottomOf="@+id/textViewTotalInfected" />
+            </RadioGroup>
 
-    <TextView
-        android:id="@+id/textViewDeath"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/text_death"
-        android:textColor="@android:color/black"
-        app:layout_constraintBottom_toBottomOf="@+id/viewStatistics"
-        app:layout_constraintEnd_toEndOf="@+id/textViewTotalDeath"
-        app:layout_constraintStart_toEndOf="@+id/textViewTotalInfected"
-        app:layout_constraintTop_toBottomOf="@+id/textViewTotalDeath" />
+            <TextView
+                android:id="@+id/textViewAllYouNeed"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/text_all_you_need"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/sp_18"
+                app:layout_constraintBottom_toTopOf="@+id/textViewStayAtHome"
+                app:layout_constraintStart_toStartOf="@+id/textViewStayAtHome" />
 
-    <TextView
-        android:id="@+id/textViewRecovered"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/text_recovered"
-        android:textColor="@android:color/black"
-        app:layout_constraintBottom_toBottomOf="@+id/viewStatistics"
-        app:layout_constraintEnd_toEndOf="@+id/textViewTotalRecovered"
-        app:layout_constraintStart_toEndOf="@+id/textViewTotalDeath"
-        app:layout_constraintTop_toBottomOf="@+id/textViewTotalRecovered" />
+            <TextView
+                android:id="@+id/textViewStayAtHome"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/text_is_stay_at_home"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/sp_18"
+                app:layout_constraintBottom_toTopOf="@+id/guidelineTop"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.8"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.6" />
 
-    <TextView
-        android:id="@+id/textViewTotalInfected"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:textColor="@color/colorOrange"
-        android:textSize="@dimen/sp_18"
-        app:layout_constraintBottom_toTopOf="@+id/textViewInfected"
-        app:layout_constraintEnd_toStartOf="@+id/textViewTotalDeath"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintHorizontal_chainStyle="spread"
-        app:layout_constraintStart_toStartOf="@+id/viewStatistics"
-        app:layout_constraintTop_toBottomOf="@+id/textViewNewInfected" />
+            <TextView
+                android:id="@+id/textViewCaseUpdate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dp_20"
+                android:layout_marginTop="@dimen/dp_24"
+                android:text="@string/text_case_update"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/sp_18"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/radioGroupToggleInformation" />
 
-    <TextView
-        android:id="@+id/textViewTotalDeath"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:textColor="@color/colorRed"
-        android:textSize="@dimen/sp_18"
-        app:layout_constraintBottom_toTopOf="@+id/textViewDeath"
-        app:layout_constraintEnd_toStartOf="@+id/textViewTotalRecovered"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/textViewTotalInfected"
-        app:layout_constraintTop_toBottomOf="@+id/textViewNewDeath" />
+            <TextView
+                android:id="@+id/textViewUpdateTime"
+                formatTime="@{summary.date}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_5"
+                app:layout_constraintStart_toStartOf="@id/textViewCaseUpdate"
+                app:layout_constraintTop_toBottomOf="@+id/textViewCaseUpdate" />
 
-    <TextView
-        android:id="@+id/textViewTotalRecovered"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:textColor="@color/colorGreen"
-        android:textSize="@dimen/sp_18"
-        app:layout_constraintBottom_toTopOf="@+id/textViewRecovered"
-        app:layout_constraintEnd_toEndOf="@+id/viewStatistics"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/textViewTotalDeath"
-        app:layout_constraintTop_toBottomOf="@+id/textViewNewRecovered" />
+            <TextView
+                android:id="@+id/textViewSeeDetail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_36"
+                android:layout_marginEnd="@dimen/dp_20"
+                android:gravity="center"
+                android:text="@string/text_see_detail"
+                android:textColor="@color/colorAccent"
+                android:visibility="@{isVietNam == true ? View.INVISIBLE : View.VISIBLE}"
+                app:drawableEndCompat="@drawable/ic_navigate_next_green_24dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/radioGroupToggleInformation" />
 
-    <TextView
-        android:id="@+id/textViewNewInfected"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="@color/colorOrange"
-        app:layout_constraintBottom_toTopOf="@+id/textViewTotalInfected"
-        app:layout_constraintEnd_toEndOf="@+id/textViewTotalInfected"
-        app:layout_constraintStart_toStartOf="@+id/textViewTotalInfected"
-        app:layout_constraintTop_toBottomOf="@+id/buttonInfected" />
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardViewStatistics"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/dp_200"
+                android:layout_margin="@dimen/dp_20"
+                app:cardCornerRadius="@dimen/dp_10"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textViewUpdateTime">
 
-    <TextView
-        android:id="@+id/textViewNewRecovered"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="@color/colorGreen"
-        app:layout_constraintBottom_toTopOf="@+id/textViewTotalRecovered"
-        app:layout_constraintEnd_toEndOf="@+id/textViewTotalRecovered"
-        app:layout_constraintStart_toEndOf="@+id/textViewTotalDeath"
-        app:layout_constraintTop_toBottomOf="@+id/buttonRecovered" />
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/textViewNewDeath"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="@color/colorRed"
-        app:layout_constraintBottom_toTopOf="@+id/textViewTotalDeath"
-        app:layout_constraintEnd_toEndOf="@+id/textViewDeath"
-        app:layout_constraintStart_toStartOf="@+id/textViewDeath"
-        app:layout_constraintTop_toBottomOf="@+id/buttonDeath" />
+                    <TextView
+                        android:id="@+id/textViewInfected"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/text_infected"
+                        android:textColor="@android:color/black"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="@+id/textViewTotalInfected"
+                        app:layout_constraintStart_toStartOf="@+id/textViewTotalInfected"
+                        app:layout_constraintTop_toBottomOf="@+id/textViewTotalInfected" />
 
-    <ImageButton
-        android:id="@+id/imageButtonNotification"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/dp_12"
-        android:layout_marginEnd="@dimen/dp_12"
-        android:background="@android:color/transparent"
-        android:contentDescription="@null"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_notifications_white_24dp" />
+                    <TextView
+                        android:id="@+id/textViewDeath"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/text_death"
+                        android:textColor="@android:color/black"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="@+id/textViewTotalDeath"
+                        app:layout_constraintStart_toEndOf="@+id/textViewTotalInfected"
+                        app:layout_constraintTop_toBottomOf="@+id/textViewTotalDeath" />
 
-    <Button
-        android:id="@+id/buttonInfected"
-        android:layout_width="@dimen/dp_24"
-        android:layout_height="@dimen/dp_24"
-        android:background="@drawable/btn_infected_background"
-        app:layout_constraintBottom_toTopOf="@+id/textViewNewInfected"
-        app:layout_constraintEnd_toEndOf="@+id/textViewTotalInfected"
-        app:layout_constraintStart_toStartOf="@+id/textViewTotalInfected"
-        app:layout_constraintTop_toTopOf="@+id/viewStatistics" />
+                    <TextView
+                        android:id="@+id/textViewRecovered"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/text_recovered"
+                        android:textColor="@android:color/black"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="@+id/textViewTotalRecovered"
+                        app:layout_constraintStart_toEndOf="@+id/textViewTotalDeath"
+                        app:layout_constraintTop_toBottomOf="@+id/textViewTotalRecovered" />
 
-    <Button
-        android:id="@+id/buttonDeath"
-        android:layout_width="@dimen/dp_24"
-        android:layout_height="@dimen/dp_24"
-        android:background="@drawable/btn_death_background"
-        app:layout_constraintBottom_toTopOf="@+id/textViewNewDeath"
-        app:layout_constraintEnd_toEndOf="@+id/textViewTotalDeath"
-        app:layout_constraintStart_toEndOf="@+id/textViewTotalInfected"
-        app:layout_constraintTop_toTopOf="@+id/viewStatistics" />
+                    <TextView
+                        android:id="@+id/textViewTotalInfected"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="@{isVietNam == true ? (`` + country.totalConfirmed) : (`` + global.totalConfirmed)}"
+                        android:textColor="@color/colorOrange"
+                        android:textSize="@dimen/sp_18"
+                        app:layout_constraintBottom_toTopOf="@+id/textViewInfected"
+                        app:layout_constraintEnd_toStartOf="@+id/textViewTotalDeath"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintHorizontal_chainStyle="spread"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/textViewNewInfected" />
 
-    <Button
-        android:id="@+id/buttonRecovered"
-        android:layout_width="@dimen/dp_24"
-        android:layout_height="@dimen/dp_24"
-        android:background="@drawable/btn_recovered_background"
-        app:layout_constraintBottom_toTopOf="@+id/textViewNewRecovered"
-        app:layout_constraintEnd_toEndOf="@+id/textViewTotalRecovered"
-        app:layout_constraintStart_toEndOf="@+id/textViewTotalDeath"
-        app:layout_constraintTop_toTopOf="@+id/viewStatistics" />
+                    <TextView
+                        android:id="@+id/textViewTotalDeath"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="@{isVietNam == true ? (`` + country.totalDeaths) : (`` + global.totalDeaths)}"
+                        android:textColor="@color/colorRed"
+                        android:textSize="@dimen/sp_18"
+                        app:layout_constraintBottom_toTopOf="@+id/textViewDeath"
+                        app:layout_constraintEnd_toStartOf="@+id/textViewTotalRecovered"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toEndOf="@+id/textViewTotalInfected"
+                        app:layout_constraintTop_toBottomOf="@+id/textViewNewDeath" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+                    <TextView
+                        android:id="@+id/textViewTotalRecovered"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="@{isVietNam == true ? (`` + country.totalRecovered) : (`` + global.totalRecovered)}"
+                        android:textColor="@color/colorGreen"
+                        android:textSize="@dimen/sp_18"
+                        app:layout_constraintBottom_toTopOf="@+id/textViewRecovered"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toEndOf="@+id/textViewTotalDeath"
+                        app:layout_constraintTop_toBottomOf="@+id/textViewNewRecovered" />
+
+                    <TextView
+                        android:id="@+id/textViewNewInfected"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{isVietNam == true ? (`+` + country.newConfirmed) : (`+` + global.newConfirmed)}"
+                        android:textColor="@color/colorOrange"
+                        app:layout_constraintBottom_toTopOf="@+id/textViewTotalInfected"
+                        app:layout_constraintEnd_toEndOf="@+id/textViewTotalInfected"
+                        app:layout_constraintStart_toStartOf="@+id/textViewTotalInfected"
+                        app:layout_constraintTop_toBottomOf="@+id/buttonInfected" />
+
+                    <TextView
+                        android:id="@+id/textViewNewRecovered"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{isVietNam == true ? (`+` + country.newRecovered) : (`+` + global.newRecovered)}"
+                        android:textColor="@color/colorGreen"
+                        app:layout_constraintBottom_toTopOf="@+id/textViewTotalRecovered"
+                        app:layout_constraintEnd_toEndOf="@+id/textViewTotalRecovered"
+                        app:layout_constraintStart_toEndOf="@+id/textViewTotalDeath"
+                        app:layout_constraintTop_toBottomOf="@+id/buttonRecovered" />
+
+                    <TextView
+                        android:id="@+id/textViewNewDeath"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{isVietNam == true ? (`+` + country.newDeaths) : (`+` + global.newDeaths)}"
+                        android:textColor="@color/colorRed"
+                        app:layout_constraintBottom_toTopOf="@+id/textViewTotalDeath"
+                        app:layout_constraintEnd_toEndOf="@+id/textViewDeath"
+                        app:layout_constraintStart_toStartOf="@+id/textViewDeath"
+                        app:layout_constraintTop_toBottomOf="@+id/buttonDeath" />
+
+                    <com.google.android.material.floatingactionbutton.FloatingActionButton
+                        android:id="@+id/buttonInfected"
+                        android:layout_width="@dimen/dp_24"
+                        android:layout_height="@dimen/dp_24"
+                        android:backgroundTint="@color/colorOrange"
+                        app:layout_constraintBottom_toTopOf="@+id/textViewNewInfected"
+                        app:layout_constraintEnd_toEndOf="@+id/textViewTotalInfected"
+                        app:layout_constraintStart_toStartOf="@+id/textViewTotalInfected"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <com.google.android.material.floatingactionbutton.FloatingActionButton
+                        android:id="@+id/buttonDeath"
+                        android:layout_width="@dimen/dp_24"
+                        android:layout_height="@dimen/dp_24"
+                        android:backgroundTint="@color/colorRed"
+                        app:layout_constraintBottom_toTopOf="@+id/textViewNewDeath"
+                        app:layout_constraintEnd_toEndOf="@+id/textViewTotalDeath"
+                        app:layout_constraintStart_toEndOf="@+id/textViewTotalInfected"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <com.google.android.material.floatingactionbutton.FloatingActionButton
+                        android:id="@+id/buttonRecovered"
+                        android:layout_width="@dimen/dp_24"
+                        android:layout_height="@dimen/dp_24"
+                        android:backgroundTint="@color/colorGreen"
+                        app:layout_constraintBottom_toTopOf="@+id/textViewNewRecovered"
+                        app:layout_constraintEnd_toEndOf="@+id/textViewTotalRecovered"
+                        app:layout_constraintStart_toEndOf="@+id/textViewTotalDeath"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <TextView
+                android:id="@+id/textViewWarning"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_20"
+                android:text="Dịch bệnh lây lan"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/sp_18"
+                app:layout_constraintStart_toStartOf="@+id/textViewCaseUpdate"
+                app:layout_constraintTop_toBottomOf="@+id/cardViewStatistics" />
+
+            <TextView
+                android:id="@+id/textViewExtend"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/dp_20"
+                android:gravity="center"
+                android:text="@string/text_see_detail"
+                android:textColor="@color/colorAccent"
+                app:drawableEndCompat="@drawable/ic_navigate_next_green_24dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/textViewWarning" />
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardViewMap"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/dp_20"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/textViewWarning">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/map"
+                    android:contentDescription="@null"
+                    android:scaleType="fitXY" />
+
+            </androidx.cardview.widget.CardView>
+
+            <TextView
+                android:id="@+id/textViewChart"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/text_statistic_char_by_week"
+                android:textSize="@dimen/sp_18"
+                android:textColor="@android:color/black"
+                android:layout_marginTop="@dimen/dp_20"
+                app:layout_constraintStart_toStartOf="@id/textViewWarning"
+                app:layout_constraintTop_toBottomOf="@id/cardViewMap"/>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardViewChart"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/dp_300"
+                android:layout_margin="@dimen/dp_20"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/textViewChart">
+
+                <com.github.mikephil.charting.charts.BarChart
+                    android:id="@+id/groupBarChart"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/cardViewMap" />
+
+            </androidx.cardview.widget.CardView>
+
+            <fragment
+                android:id="@+id/map"
+                android:name="com.google.android.gms.maps.SupportMapFragment"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/dp_400"
+                android:layout_marginTop="@dimen/dp_20"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cardViewChart" />
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardInformation"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dp_10"
+                android:layout_marginEnd="@dimen/dp_10"
+                android:layout_marginBottom="@dimen/dp_50"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="@+id/map"
+                app:layout_constraintEnd_toEndOf="@+id/map"
+                app:layout_constraintStart_toStartOf="@+id/map">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/textViewDetectingLocation"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/dp_10"
+                        android:text="@{caseInformation.detectingLocation}"
+                        app:layout_constraintBottom_toTopOf="@+id/textViewDescription"
+                        app:layout_constraintStart_toStartOf="@+id/textViewDescription"
+                        app:layout_constraintTop_toBottomOf="@+id/textViewAge" />
+
+                    <TextView
+                        android:id="@+id/textViewAge"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/dp_10"
+                        android:layout_marginBottom="@dimen/dp_10"
+                        android:text="@{`` + caseInformation.age}"
+                        app:layout_constraintBottom_toTopOf="@+id/textViewDetectingLocation"
+                        app:layout_constraintStart_toStartOf="@+id/textViewDetectingLocation"
+                        app:layout_constraintTop_toBottomOf="@+id/textViewCode" />
+
+                    <TextView
+                        android:id="@+id/textViewDescription"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/dp_10"
+                        android:layout_marginBottom="@dimen/dp_10"
+                        android:text="@{caseInformation.description}"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/textViewDetectingLocation" />
+
+                    <TextView
+                        android:id="@+id/textViewCode"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_marginTop="@dimen/dp_10"
+                        android:text="@{caseInformation.code}"
+                        app:layout_constraintBottom_toTopOf="@+id/textViewAge"
+                        app:layout_constraintStart_toStartOf="@+id/textViewAge"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.cardview.widget.CardView>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</layout>

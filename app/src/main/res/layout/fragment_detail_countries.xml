@@ -17,7 +17,9 @@
             android:id="@+id/collapsingToolbarLayout"
             android:layout_width="match_parent"
             android:layout_height="@dimen/dp_100"
+            app:collapsedTitleTextAppearance="@style/TextAppearance.App.Title.Collapsed"
             app:expandedTitleGravity="center|bottom"
+            app:expandedTitleTextAppearance="@style/TextAppearance.App.Title.Expanded"
             app:layout_scrollFlags="scroll|exitUntilCollapsed"
             app:title="@string/title_detail_counties_screen">
 

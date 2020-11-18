@@ -3,9 +3,11 @@ package com.example.googlemap.di
 import androidx.room.Room
 import com.example.googlemap.data.resource.InformationDataSource
 import com.example.googlemap.data.resource.InformationRepository
+import com.example.googlemap.data.resource.local.InformationLocalDataSource
 import com.example.googlemap.data.resource.local.db.MyDatabase
 import com.example.googlemap.data.resource.remote.InformationRemoteDataSource
 import org.koin.android.ext.koin.androidContext
+import org.koin.core.qualifier.named
 import org.koin.dsl.module
 
 val repoModule = module {
@@ -21,7 +23,8 @@ val repoModule = module {
 }
 
 val informationRepo = module {
-    single<InformationDataSource.Remote> { InformationRemoteDataSource(get()) }
+    single<InformationDataSource.Remote> { InformationRemoteDataSource(get(named("ApiService")), get(named("ApiCovid"))) }
+    single<InformationDataSource.Local> { InformationLocalDataSource(get()) }
 
-    single { InformationRepository(get()) }
+    single { InformationRepository(get(), get()) }
 }
