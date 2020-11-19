@@ -3,7 +3,6 @@ package com.example.googlemap.ui.statistic
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.googlemap.base.RxViewModel
-import com.example.googlemap.data.model.CaseInformation
 import com.example.googlemap.data.model.Country
 import com.example.googlemap.data.model.Global
 import com.example.googlemap.data.model.Summary
@@ -13,10 +12,6 @@ import io.reactivex.rxjava3.kotlin.addTo
 import io.reactivex.rxjava3.schedulers.Schedulers
 
 class StatisticViewModel(repository: InformationRepository) : RxViewModel() {
-
-    private val _listInformation = MutableLiveData<List<CaseInformation>>()
-    val listCaseInformation: LiveData<List<CaseInformation>>
-        get() = _listInformation
 
     private val _summary = MutableLiveData<Summary>()
     val summary: LiveData<Summary>
@@ -30,17 +25,11 @@ class StatisticViewModel(repository: InformationRepository) : RxViewModel() {
     val globalInformation: LiveData<Global>
         get() = _globalInformation
 
-    init {
-        repository.getInformation()
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe({
-                _listInformation.value = it
-            }, {
-                _error.value = it.message.toString()
-            })
-            .addTo(disposables)
+    private val _isVietNam = MutableLiveData<Boolean>()
+    val isVietNam: LiveData<Boolean>
+        get() = _isVietNam
 
+    init {
         repository.getSummaryData()
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
@@ -59,9 +48,11 @@ class StatisticViewModel(repository: InformationRepository) : RxViewModel() {
         }?.let { country ->
             _vietNamInformation.value = country
         }
+        _isVietNam.value = true
     }
 
     fun getGlobalInformation() {
+        _isVietNam.value = false
         _globalInformation.value = summary.value?.global
     }
 }

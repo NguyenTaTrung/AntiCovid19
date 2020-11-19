@@ -17,3 +17,10 @@ object PreferencesConst {
     const val PREFS_IS_ALLOW_NOTIFICATION = "PREFS_IS_ALLOW_NOTIFICATION"
     const val PREFS_IS_VIETNAMESE_LANGUAGE = "PREFS_IS_VIETNAMESE_LANGUAGE"
 }
+
+
+object ModelConst {
+    const val TOTAL_CONFIRMED = "TotalConfirmed"
+    const val TOTAL_DEATHS = "TotalDeaths"
+    const val TOTAL_RECOVERED = "TotalRecovered"
+}
