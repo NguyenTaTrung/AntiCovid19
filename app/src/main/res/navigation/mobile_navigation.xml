@@ -25,6 +25,12 @@
         <action
             android:id="@+id/actionToDetailCountryFragment"
             app:destination="@id/detailCountryFragment" />
+
+        <argument
+            android:name="bundleCountry"
+            app:argType="com.example.googlemap.data.model.Country"
+            app:nullable="true"
+            android:defaultValue="@null" />
     </fragment>
 
     <fragment
@@ -37,7 +43,12 @@
         android:id="@+id/detailCountryFragment"
         android:name="com.example.googlemap.ui.detail.DetailCountryFragment"
         android:label="DetailCountryFragment"
-        tools:layout="@layout/fragment_detail_countries" />
+        tools:layout="@layout/fragment_detail_countries">
+
+        <action
+            android:id="@+id/actionToNavigationStatistic"
+            app:destination="@id/navigation_statistic" />
+    </fragment>
 
     <dialog
         android:id="@+id/symptomDialog"

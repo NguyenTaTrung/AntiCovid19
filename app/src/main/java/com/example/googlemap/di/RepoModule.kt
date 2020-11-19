@@ -23,7 +23,13 @@ val repoModule = module {
 }
 
 val informationRepo = module {
-    single<InformationDataSource.Remote> { InformationRemoteDataSource(get(named("ApiService")), get(named("ApiCovid"))) }
+    single<InformationDataSource.Remote> {
+        InformationRemoteDataSource(
+            get(named("ApiService")),
+            get(named("ApiCovid")),
+            get(named("ApiRss"))
+        )
+    }
     single<InformationDataSource.Local> { InformationLocalDataSource(get()) }
 
     single { InformationRepository(get(), get()) }

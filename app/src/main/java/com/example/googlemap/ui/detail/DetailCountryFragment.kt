@@ -13,6 +13,7 @@ import com.example.googlemap.R
 import com.example.googlemap.base.BaseFragment
 import com.example.googlemap.data.model.Country
 import com.example.googlemap.databinding.FragmentDetailCountriesBinding
+import com.example.googlemap.ui.dialog.LoadingDialog
 import com.example.googlemap.utils.ModelConst.TOTAL_CONFIRMED
 import com.example.googlemap.utils.ModelConst.TOTAL_DEATHS
 import com.example.googlemap.utils.ModelConst.TOTAL_RECOVERED
@@ -33,7 +34,7 @@ class DetailCountryFragment :
     private val adapter = DetailCountryAdapter(::openStatisticFragment) {
         recyclerViewCountries.scrollToPosition(0)
     }
-
+    private var dialogLoading: LoadingDialog? = null
     private var stateButton = 0
 
     override val layoutResources: Int
@@ -43,6 +44,7 @@ class DetailCountryFragment :
         get() = R.color.colorPrimary
 
     override fun initData() {
+        context?.let { dialogLoading = LoadingDialog(it) }
         recyclerViewCountries.adapter = adapter
         observeData()
     }
@@ -76,6 +78,10 @@ class DetailCountryFragment :
     }
 
     private fun observeData() = with(viewModel) {
+        isLoading.observe(viewLifecycleOwner, Observer {
+            if (it) dialogLoading?.show() else dialogLoading?.dismiss()
+        })
+
         countries.observe(viewLifecycleOwner, Observer {
             adapter.submitList(it)
             pullToRefresh.isRefreshing = false
@@ -164,7 +170,9 @@ class DetailCountryFragment :
     }
 
     private fun openStatisticFragment(country: Country, position: Int) {
-
+        findNavController().navigate(
+            DetailCountryFragmentDirections.actionToNavigationStatistic(country)
+        )
     }
 
     companion object {

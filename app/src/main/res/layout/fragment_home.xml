@@ -25,23 +25,24 @@
                 android:id="@+id/view"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:background="@drawable/action_bar_background"
+                android:background="@drawable/background_action_bar"
                 app:layout_constraintBottom_toTopOf="@+id/guidelineTop"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
+                android:id="@+id/textViewTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/dp_30"
+                android:layout_marginTop="@dimen/dp_20"
                 android:text="@string/title_home"
                 android:textColor="@android:color/white"
                 android:textSize="@dimen/sp_30"
                 android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="@id/radioGroupChangeLanguage"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/radioGroupChangeLanguage" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerViewSymptoms"
@@ -101,7 +102,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_margin="@dimen/dp_10"
-                        android:background="@drawable/wear_mask"
+                        android:background="@drawable/img_wear_mask"
                         android:contentDescription="@null"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -156,7 +157,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_margin="@dimen/dp_10"
-                        android:background="@drawable/wash_hands"
+                        android:background="@drawable/img_wash_hands"
                         android:contentDescription="@null"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -211,7 +212,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_margin="@dimen/dp_10"
-                        android:background="@drawable/nose"
+                        android:background="@drawable/img_nose"
                         android:contentDescription="@null"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -267,7 +268,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_margin="@dimen/dp_10"
-                        android:background="@drawable/avoid"
+                        android:background="@drawable/img_avoid"
                         android:contentDescription="@null"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -362,14 +363,14 @@
 
             <RadioGroup
                 android:id="@+id/radioGroupChangeLanguage"
-                android:layout_width="@dimen/dp_80"
-                android:layout_height="@dimen/dp_24"
-                android:layout_marginTop="@dimen/dp_20"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/dp_25"
                 android:layout_marginEnd="@dimen/dp_30"
-                android:background="@drawable/radio_group_background"
+                android:background="@drawable/background_radio_group"
                 android:orientation="horizontal"
+                app:layout_constraintBottom_toBottomOf="@id/textViewTitle"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                app:layout_constraintTop_toTopOf="@id/textViewTitle">
 
                 <RadioButton
                     android:id="@+id/radioButtonVietnamese"
@@ -379,7 +380,7 @@
                     android:layout_marginTop="@dimen/dp_1"
                     android:layout_marginBottom="@dimen/dp_1"
                     android:layout_weight="1"
-                    android:background="@drawable/radio_button_selected"
+                    android:background="@drawable/selected_radio_button"
                     android:button="@null"
                     android:gravity="center"
                     android:text="@string/radio_button_vn"
@@ -393,7 +394,7 @@
                     android:layout_marginEnd="@dimen/dp_1"
                     android:layout_marginBottom="@dimen/dp_1"
                     android:layout_weight="1"
-                    android:background="@drawable/radio_button_selected"
+                    android:background="@drawable/selected_radio_button"
                     android:button="@null"
                     android:checked="true"
                     android:gravity="center"

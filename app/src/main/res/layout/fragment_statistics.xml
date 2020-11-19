@@ -11,8 +11,8 @@
             type="Boolean" />
 
         <variable
-            name="summary"
-            type="com.example.googlemap.data.model.Summary" />
+            name="isVisibleRadioButton"
+            type="Boolean" />
 
         <variable
             name="global"
@@ -69,7 +69,7 @@
                 android:layout_height="0dp"
                 android:layout_marginTop="@dimen/dp_10"
                 android:contentDescription="@null"
-                app:layout_constraintBottom_toTopOf="@+id/radioGroupToggleInformation"
+                app:layout_constraintBottom_toTopOf="@+id/cardGroupRadio"
                 app:layout_constraintEnd_toStartOf="@+id/textViewStayAtHome"
                 app:layout_constraintStart_toEndOf="@+id/guidelineTop"
                 app:layout_constraintStart_toStartOf="parent"
@@ -80,55 +80,65 @@
                 android:id="@+id/viewBottom"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:background="@drawable/view_bottom_background"
+                android:background="@drawable/background_view_bottom"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/guidelineTop" />
 
-            <RadioGroup
-                android:id="@+id/radioGroupToggleInformation"
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cardGroupRadio"
                 android:layout_width="0dp"
                 android:layout_height="@dimen/dp_50"
                 android:layout_marginStart="@dimen/dp_50"
                 android:layout_marginTop="@dimen/dp_20"
                 android:layout_marginEnd="@dimen/dp_50"
-                android:background="@drawable/radio_group_background"
-                android:orientation="horizontal"
+                app:cardBackgroundColor="@color/colorPrimary"
+                app:cardCornerRadius="@dimen/dp_25"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/guidelineTop">
 
-                <RadioButton
-                    android:id="@+id/radioButtonVietnamese"
-                    android:layout_width="0dp"
+                <RadioGroup
+                    android:id="@+id/radioGroupToggleInformation"
+                    android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginStart="@dimen/dp_1"
-                    android:layout_marginTop="@dimen/dp_1"
-                    android:layout_marginBottom="@dimen/dp_1"
-                    android:layout_weight="1"
-                    android:background="@drawable/radio_button_selected"
-                    android:button="@null"
-                    android:checked="true"
-                    android:gravity="center"
-                    android:text="@string/radio_button_vietnamese"
-                    android:textColor="@android:color/white" />
+                    android:background="@drawable/background_radio_group"
+                    android:orientation="horizontal">
 
-                <RadioButton
-                    android:id="@+id/radioButtonWorld"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_marginTop="@dimen/dp_1"
-                    android:layout_marginEnd="@dimen/dp_1"
-                    android:layout_marginBottom="@dimen/dp_1"
-                    android:layout_weight="1"
-                    android:background="@drawable/radio_button_selected"
-                    android:button="@null"
-                    android:gravity="center"
-                    android:text="@string/radio_button_worlds"
-                    android:textColor="@android:color/white" />
+                    <RadioButton
+                        android:id="@+id/radioButtonVietnamese"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="@dimen/dp_1"
+                        android:layout_marginTop="@dimen/dp_1"
+                        android:layout_marginBottom="@dimen/dp_1"
+                        android:layout_weight="1"
+                        android:background="@drawable/selected_radio_button"
+                        android:button="@null"
+                        android:checked="true"
+                        android:gravity="center"
+                        android:text="@string/radio_button_vietnamese"
+                        android:textColor="@android:color/white" />
 
-            </RadioGroup>
+                    <RadioButton
+                        android:id="@+id/radioButtonWorld"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="@dimen/dp_1"
+                        android:layout_marginEnd="@dimen/dp_1"
+                        android:layout_marginBottom="@dimen/dp_1"
+                        android:layout_weight="1"
+                        android:background="@drawable/selected_radio_button"
+                        android:button="@null"
+                        android:gravity="center"
+                        android:text="@string/radio_button_worlds"
+                        android:textColor="@android:color/white"
+                        android:visibility="@{isVisibleRadioButton ? View.VISIBLE : View.GONE}" />
+
+                </RadioGroup>
+
+            </com.google.android.material.card.MaterialCardView>
 
             <TextView
                 android:id="@+id/textViewAllYouNeed"
@@ -164,11 +174,11 @@
                 android:textColor="@android:color/black"
                 android:textSize="@dimen/sp_18"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/radioGroupToggleInformation" />
+                app:layout_constraintTop_toBottomOf="@+id/cardGroupRadio" />
 
             <TextView
                 android:id="@+id/textViewUpdateTime"
-                formatTime="@{summary.date}"
+                formatTime="@{country.date}"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/dp_5"
@@ -187,7 +197,7 @@
                 android:visibility="@{isVietNam == true ? View.INVISIBLE : View.VISIBLE}"
                 app:drawableEndCompat="@drawable/ic_navigate_next_green_24dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/radioGroupToggleInformation" />
+                app:layout_constraintTop_toBottomOf="@+id/cardGroupRadio" />
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/cardViewStatistics"
@@ -378,7 +388,7 @@
                 <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/map"
+                    android:background="@drawable/img_map"
                     android:contentDescription="@null"
                     android:scaleType="fitXY" />
 
