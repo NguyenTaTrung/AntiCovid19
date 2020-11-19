@@ -1,7 +1,5 @@
 package com.example.googlemap.ui.home
 
-import android.os.Bundle
-import android.view.View
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.example.googlemap.R
@@ -11,9 +9,8 @@ import com.example.googlemap.databinding.FragmentHomeBinding
 import kotlinx.android.synthetic.main.fragment_home.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class HomeFragment : BaseFragment() {
+class HomeFragment : BaseFragment<FragmentHomeBinding>() {
 
-    private var binding: FragmentHomeBinding? = null
     private val viewModel by viewModel<HomeViewModel>()
     private val homeAdapter = HomeAdapter(::openDialogSymptomDetail)
 
@@ -23,22 +20,12 @@ class HomeFragment : BaseFragment() {
     override val statusBarColor: Int
         get() = R.color.colorPrimary
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        binding = FragmentHomeBinding.bind(view)
-    }
-
     override fun initData() {
         recyclerViewSymptoms.adapter = homeAdapter
         observeData()
     }
 
     override fun initAction() {}
-
-    override fun onDestroy() {
-        binding = null
-        super.onDestroy()
-    }
 
     private fun observeData() {
         viewModel.symptoms.observe(this, Observer {

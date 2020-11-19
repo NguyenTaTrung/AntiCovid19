@@ -21,10 +21,6 @@
         <variable
             name="country"
             type="com.example.googlemap.data.model.Country" />
-
-        <variable
-            name="caseInformation"
-            type="com.example.googlemap.data.model.CaseInformation" />
     </data>
 
     <androidx.core.widget.NestedScrollView
@@ -245,12 +241,11 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:gravity="center"
-                        android:text="@{isVietNam == true ? (`` + country.totalConfirmed) : (`` + global.totalConfirmed)}"
+                        android:text="@{isVietNam == true ? (@string/text_information(country.totalConfirmed)) : (@string/text_information(global.totalConfirmed))}"
                         android:textColor="@color/colorOrange"
                         android:textSize="@dimen/sp_18"
                         app:layout_constraintBottom_toTopOf="@+id/textViewInfected"
                         app:layout_constraintEnd_toStartOf="@+id/textViewTotalDeath"
-                        app:layout_constraintHorizontal_bias="0.5"
                         app:layout_constraintHorizontal_chainStyle="spread"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/textViewNewInfected" />
@@ -260,12 +255,11 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:gravity="center"
-                        android:text="@{isVietNam == true ? (`` + country.totalDeaths) : (`` + global.totalDeaths)}"
+                        android:text="@{isVietNam == true ? (@string/text_information(country.totalDeaths)) : (@string/text_information(global.totalDeaths))}"
                         android:textColor="@color/colorRed"
                         android:textSize="@dimen/sp_18"
                         app:layout_constraintBottom_toTopOf="@+id/textViewDeath"
                         app:layout_constraintEnd_toStartOf="@+id/textViewTotalRecovered"
-                        app:layout_constraintHorizontal_bias="0.5"
                         app:layout_constraintStart_toEndOf="@+id/textViewTotalInfected"
                         app:layout_constraintTop_toBottomOf="@+id/textViewNewDeath" />
 
@@ -274,12 +268,11 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:gravity="center"
-                        android:text="@{isVietNam == true ? (`` + country.totalRecovered) : (`` + global.totalRecovered)}"
+                        android:text="@{isVietNam == true ? (@string/text_information(country.totalRecovered)) : (@string/text_information(global.totalRecovered))}"
                         android:textColor="@color/colorGreen"
                         android:textSize="@dimen/sp_18"
                         app:layout_constraintBottom_toTopOf="@+id/textViewRecovered"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.5"
                         app:layout_constraintStart_toEndOf="@+id/textViewTotalDeath"
                         app:layout_constraintTop_toBottomOf="@+id/textViewNewRecovered" />
 
@@ -287,7 +280,7 @@
                         android:id="@+id/textViewNewInfected"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@{isVietNam == true ? (`+` + country.newConfirmed) : (`+` + global.newConfirmed)}"
+                        android:text="@{isVietNam == true ? (@string/text_plus_information(country.newConfirmed)) : (@string/text_plus_information(global.newConfirmed))}"
                         android:textColor="@color/colorOrange"
                         app:layout_constraintBottom_toTopOf="@+id/textViewTotalInfected"
                         app:layout_constraintEnd_toEndOf="@+id/textViewTotalInfected"
@@ -298,7 +291,7 @@
                         android:id="@+id/textViewNewRecovered"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@{isVietNam == true ? (`+` + country.newRecovered) : (`+` + global.newRecovered)}"
+                        android:text="@{isVietNam == true ? (@string/text_plus_information(country.newRecovered)) : (@string/text_plus_information(global.newRecovered))}"
                         android:textColor="@color/colorGreen"
                         app:layout_constraintBottom_toTopOf="@+id/textViewTotalRecovered"
                         app:layout_constraintEnd_toEndOf="@+id/textViewTotalRecovered"
@@ -309,7 +302,7 @@
                         android:id="@+id/textViewNewDeath"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@{isVietNam == true ? (`+` + country.newDeaths) : (`+` + global.newDeaths)}"
+                        android:text="@{isVietNam == true ? (@string/text_plus_information(country.newDeaths)) : (@string/text_plus_information(global.newDeaths))}"
                         android:textColor="@color/colorRed"
                         app:layout_constraintBottom_toTopOf="@+id/textViewTotalDeath"
                         app:layout_constraintEnd_toEndOf="@+id/textViewDeath"
@@ -355,7 +348,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/dp_20"
-                android:text="Dịch bệnh lây lan"
+                android:text="Khu vực nguy hiểm"
                 android:textColor="@android:color/black"
                 android:textSize="@dimen/sp_18"
                 app:layout_constraintStart_toStartOf="@+id/textViewCaseUpdate"
@@ -377,9 +370,9 @@
                 android:id="@+id/cardViewMap"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/dp_20"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginTop="@dimen/dp_10"
+                app:layout_constraintEnd_toEndOf="@+id/cardViewStatistics"
+                app:layout_constraintStart_toStartOf="@+id/cardViewStatistics"
                 app:layout_constraintTop_toBottomOf="@id/textViewWarning">
 
                 <ImageView
@@ -395,99 +388,92 @@
                 android:id="@+id/textViewChart"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/text_statistic_char_by_week"
-                android:textSize="@dimen/sp_18"
-                android:textColor="@android:color/black"
                 android:layout_marginTop="@dimen/dp_20"
+                android:text="@string/text_statistic_char_by_week"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/sp_18"
                 app:layout_constraintStart_toStartOf="@id/textViewWarning"
-                app:layout_constraintTop_toBottomOf="@id/cardViewMap"/>
+                app:layout_constraintTop_toBottomOf="@id/cardViewMap" />
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/cardViewChart"
                 android:layout_width="0dp"
-                android:layout_height="@dimen/dp_300"
-                android:layout_margin="@dimen/dp_20"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/textViewChart">
-
-                <com.github.mikephil.charting.charts.BarChart
-                    android:id="@+id/groupBarChart"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/cardViewMap" />
-
-            </androidx.cardview.widget.CardView>
-
-            <fragment
-                android:id="@+id/map"
-                android:name="com.google.android.gms.maps.SupportMapFragment"
-                android:layout_width="0dp"
-                android:layout_height="@dimen/dp_400"
-                android:layout_marginTop="@dimen/dp_20"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/cardViewChart" />
-
-            <androidx.cardview.widget.CardView
-                android:id="@+id/cardInformation"
-                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/dp_10"
-                android:layout_marginEnd="@dimen/dp_10"
-                android:layout_marginBottom="@dimen/dp_50"
-                android:visibility="gone"
-                app:layout_constraintBottom_toBottomOf="@+id/map"
-                app:layout_constraintEnd_toEndOf="@+id/map"
-                app:layout_constraintStart_toStartOf="@+id/map">
+                android:layout_marginTop="@dimen/dp_10"
+                android:layout_marginBottom="@dimen/dp_10"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/cardViewStatistics"
+                app:layout_constraintStart_toStartOf="@+id/cardViewStatistics"
+                app:layout_constraintTop_toBottomOf="@id/textViewChart">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
 
-                    <TextView
-                        android:id="@+id/textViewDetectingLocation"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="@dimen/dp_10"
-                        android:text="@{caseInformation.detectingLocation}"
-                        app:layout_constraintBottom_toTopOf="@+id/textViewDescription"
-                        app:layout_constraintStart_toStartOf="@+id/textViewDescription"
-                        app:layout_constraintTop_toBottomOf="@+id/textViewAge" />
+                    <com.github.mikephil.charting.charts.BarChart
+                        android:id="@+id/groupBarChart"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/dp_300"
+                        android:layout_margin="@dimen/dp_10"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
-                    <TextView
-                        android:id="@+id/textViewAge"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/materialButtonInfected"
+                        android:layout_width="@dimen/dp_20"
+                        android:layout_height="@dimen/dp_30"
+                        android:layout_marginStart="@dimen/dp_20"
                         android:layout_marginTop="@dimen/dp_10"
-                        android:layout_marginBottom="@dimen/dp_10"
-                        android:text="@{`` + caseInformation.age}"
-                        app:layout_constraintBottom_toTopOf="@+id/textViewDetectingLocation"
-                        app:layout_constraintStart_toStartOf="@+id/textViewDetectingLocation"
-                        app:layout_constraintTop_toBottomOf="@+id/textViewCode" />
+                        android:backgroundTint="@color/colorOrange"
+                        app:layout_constraintStart_toStartOf="@id/groupBarChart"
+                        app:layout_constraintTop_toBottomOf="@id/groupBarChart" />
 
                     <TextView
-                        android:id="@+id/textViewDescription"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/dp_10"
-                        android:layout_marginBottom="@dimen/dp_10"
-                        android:text="@{caseInformation.description}"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/textViewDetectingLocation" />
+                        android:text="Số ca nhiễm mới"
+                        android:textColor="@android:color/black"
+                        app:layout_constraintBottom_toBottomOf="@id/materialButtonInfected"
+                        app:layout_constraintStart_toEndOf="@id/materialButtonInfected"
+                        app:layout_constraintTop_toTopOf="@id/materialButtonInfected" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/materialButtonDeath"
+                        android:layout_width="@dimen/dp_20"
+                        android:layout_height="@dimen/dp_30"
+                        android:backgroundTint="@color/colorRed"
+                        app:layout_constraintStart_toStartOf="@id/materialButtonInfected"
+                        app:layout_constraintTop_toBottomOf="@id/materialButtonInfected" />
 
                     <TextView
-                        android:id="@+id/textViewCode"
-                        android:layout_width="0dp"
-                        android:layout_height="0dp"
-                        android:layout_marginTop="@dimen/dp_10"
-                        android:text="@{caseInformation.code}"
-                        app:layout_constraintBottom_toTopOf="@+id/textViewAge"
-                        app:layout_constraintStart_toStartOf="@+id/textViewAge"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/dp_10"
+                        android:text="Số ca tử vong mới"
+                        android:textColor="@android:color/black"
+                        app:layout_constraintBottom_toBottomOf="@id/materialButtonDeath"
+                        app:layout_constraintStart_toEndOf="@id/materialButtonDeath"
+                        app:layout_constraintTop_toTopOf="@id/materialButtonDeath" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/materialButtonRecovered"
+                        android:layout_width="@dimen/dp_20"
+                        android:layout_height="@dimen/dp_30"
+                        android:backgroundTint="@color/colorGreen"
+                        app:layout_constraintStart_toStartOf="@id/materialButtonInfected"
+                        app:layout_constraintTop_toBottomOf="@id/materialButtonDeath" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/dp_10"
+                        android:text="Số ca hồi phục mới"
+                        android:textColor="@android:color/black"
+                        app:layout_constraintBottom_toBottomOf="@id/materialButtonRecovered"
+                        app:layout_constraintStart_toEndOf="@id/materialButtonRecovered"
+                        app:layout_constraintTop_toTopOf="@id/materialButtonRecovered" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
