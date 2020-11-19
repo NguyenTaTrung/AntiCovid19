@@ -13,7 +13,7 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_margin="@dimen/dp_10"
-        android:background="@drawable/view_background"
+        android:background="@drawable/background_view_news"
         android:elevation="@dimen/dp_5">
 
         <ImageView

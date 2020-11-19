@@ -20,6 +20,7 @@ class DetailCountryViewModel(private val repository: InformationRepository) : Rx
         get() = _countries
 
     init {
+        _isLoading.value = true
         getDataApi()
     }
 
@@ -29,13 +30,16 @@ class DetailCountryViewModel(private val repository: InformationRepository) : Rx
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({
                 _countries.value = it.countries
+                _isLoading.value = false
             }, {
                 _error.value = it.message.toString()
+                _isLoading.value = false
             })
             .addTo(disposables)
     }
 
     fun searchCountries(value: String) {
+        _isLoading.value = true
         repository.getSummaryData()
             .subscribeOn(io())
             .observeOn(AndroidSchedulers.mainThread())
@@ -48,8 +52,10 @@ class DetailCountryViewModel(private val repository: InformationRepository) : Rx
                 } else {
                     _countries.value = newCountries
                 }
+                _isLoading.value = false
             }, {
                 _error.value = it.message.toString()
+                _isLoading.value = false
             })
             .addTo(disposables)
     }

@@ -4,9 +4,11 @@ import android.content.Intent
 import android.widget.RadioGroup
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import com.example.googlemap.R
 import com.example.googlemap.base.BaseFragment
 import com.example.googlemap.databinding.FragmentStatisticsBinding
+import com.example.googlemap.ui.dialog.LoadingDialog
 import com.example.googlemap.ui.map.MapActivity
 import com.example.googlemap.utils.showToast
 import com.github.mikephil.charting.components.XAxis
@@ -20,6 +22,8 @@ class StatisticFragment :
     RadioGroup.OnCheckedChangeListener {
 
     private val viewModel by viewModel<StatisticViewModel>()
+    private val navArgs by navArgs<StatisticFragmentArgs>()
+    private var dialogLoading: LoadingDialog? = null
 
     override val layoutResources: Int
         get() = R.layout.fragment_statistics
@@ -28,7 +32,13 @@ class StatisticFragment :
         get() = R.color.colorPrimary
 
     override fun initData() {
-        observeData()
+        context?.let { dialogLoading = LoadingDialog(it) }
+        navArgs.bundleCountry?.let {
+            binding.isVisibleRadioButton = false
+            binding.isVietNam = true
+            binding.country = it
+            radioButtonVietnamese.text = it.country
+        } ?: observeData()
 
         val groupSpace = 0.25f
         val barSpace = 0.05f
@@ -119,7 +129,14 @@ class StatisticFragment :
         textViewSeeDetail.setOnClickListener {
             findNavController().navigate(StatisticFragmentDirections.actionToDetailCountryFragment())
         }
-        textViewExtend.setOnClickListener { startActivity(Intent(context, MapActivity::class.java)) }
+        textViewExtend.setOnClickListener {
+            startActivity(
+                Intent(
+                    context,
+                    MapActivity::class.java
+                )
+            )
+        }
     }
 
     override fun onCheckedChanged(group: RadioGroup?, id: Int) {
@@ -130,12 +147,13 @@ class StatisticFragment :
     }
 
     private fun observeData() = with(viewModel) {
-        isVietNam.observe(viewLifecycleOwner, Observer {
-            binding.isVietNam = it
+        binding.isVisibleRadioButton = true
+        isLoading.observe(viewLifecycleOwner, Observer {
+            if (it) dialogLoading?.show() else dialogLoading?.dismiss()
         })
 
-        summary.observe(viewLifecycleOwner, Observer {
-            binding.summary = it
+        isVietNam.observe(viewLifecycleOwner, Observer {
+            binding.isVietNam = it
         })
 
         vietNamInformation.observe(viewLifecycleOwner, Observer {

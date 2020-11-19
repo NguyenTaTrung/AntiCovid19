@@ -20,7 +20,7 @@ class SymptomDialog : DialogFragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        dialog?.window?.setBackgroundDrawableResource(R.drawable.view_background)
+        dialog?.window?.setBackgroundDrawableResource(R.drawable.background_view_news)
         return inflater.inflate(R.layout.dialog_preview, container, false)
     }
 

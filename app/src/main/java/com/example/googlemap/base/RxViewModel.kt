@@ -12,6 +12,10 @@ open class RxViewModel : ViewModel() {
     val error: LiveData<String>
         get() = _error
 
+    protected val _isLoading = MutableLiveData<Boolean>()
+    val isLoading: LiveData<Boolean>
+        get() = _isLoading
+
     override fun onCleared() {
         disposables.clear()
         super.onCleared()

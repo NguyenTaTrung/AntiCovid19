@@ -30,14 +30,17 @@ class StatisticViewModel(repository: InformationRepository) : RxViewModel() {
         get() = _isVietNam
 
     init {
+        _isLoading.value = true
         repository.getSummaryData()
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({
                 _summary.value = it
                 getVietNamInformation()
+                _isLoading.value = false
             }, {
                 _error.value = it.message.toString()
+                _isLoading.value = false
             })
             .addTo(disposables)
     }
