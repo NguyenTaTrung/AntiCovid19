@@ -8,7 +8,8 @@ import io.reactivex.rxjava3.core.Observable
 
 interface InformationDataSource {
     interface Local {
-        fun getSymptoms(): List<Symptom>
+        fun getLanguage(): Boolean
+        fun updateLanguage(isVietnamese: Boolean)
     }
 
     interface Remote {

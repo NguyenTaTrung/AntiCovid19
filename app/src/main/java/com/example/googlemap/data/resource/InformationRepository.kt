@@ -2,7 +2,6 @@ package com.example.googlemap.data.resource
 
 import com.example.googlemap.data.model.CaseInformation
 import com.example.googlemap.data.model.Summary
-import com.example.googlemap.data.model.Symptom
 import com.example.googlemap.data.model.rss.Rss
 import io.reactivex.rxjava3.core.Observable
 
@@ -23,5 +22,9 @@ class InformationRepository(
 
     override fun getDomesticVNExpress(): Observable<Rss> = remote.getDomesticVNExpress()
 
-    override fun getSymptoms(): List<Symptom> = local.getSymptoms()
+    override fun getLanguage(): Boolean = local.getLanguage()
+
+    override fun updateLanguage(isVietnamese: Boolean) {
+        local.updateLanguage(isVietnamese)
+    }
 }

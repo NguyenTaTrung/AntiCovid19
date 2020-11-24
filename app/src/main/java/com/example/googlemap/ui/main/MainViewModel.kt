@@ -1,11 +1,11 @@
-package com.example.googlemap.ui.home
+package com.example.googlemap.ui.main
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.example.googlemap.base.RxViewModel
+import androidx.lifecycle.ViewModel
 import com.example.googlemap.data.resource.InformationRepository
 
-class HomeViewModel(private val repository: InformationRepository) : RxViewModel() {
+class MainViewModel(repository: InformationRepository) : ViewModel() {
 
     private val _isVietnameseLanguage = MutableLiveData<Boolean>()
     val isVietnameseLanguage: LiveData<Boolean>
@@ -13,9 +13,5 @@ class HomeViewModel(private val repository: InformationRepository) : RxViewModel
 
     init {
         _isVietnameseLanguage.value = repository.getLanguage()
-    }
-
-    fun updateLanguage(isVietnamese: Boolean) {
-        repository.updateLanguage(isVietnamese)
     }
 }

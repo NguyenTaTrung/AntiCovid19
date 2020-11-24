@@ -52,6 +52,20 @@
     <string name="text_notice_content">If you turn off notifications you will not receive the latest information about the Covid-19 epidemic. Do you want to turn off notifications?</string>
     <string name="text_empty_edittext">Please enter search keywords!</string>
     <string name="title_activity_main">MainActivity</string>
+    <string name="text_description_question">If you feel sick with any of covid-19 symptoms please call or SMS us immediately for help.</string>
+    <string name="text_content_rag">When you cough or sneeze, cover your nose and mouth with a tissue or with your elbow.</string>
+    <string name="text_statistic_char_by_week">Statistical chart by week</string>
+    <string name="text_area_warning">Dangerous area</string>
+    <string name="text_char_new_infected">Number of new infections</string>
+    <string name="text_char_new_death">Number of new deaths</string>
+    <string name="text_char_new_recovered">Number of new recovery</string>
+    <string name="text_char_monday">Monday</string>
+    <string name="text_char_tuesday">Tuesday</string>
+    <string name="text_char_wednesday">Wednesday</string>
+    <string name="text_char_thursday">Thursday</string>
+    <string name="text_char_friday">Friday</string>
+    <string name="text_char_saturday">Saturday</string>
+    <string name="text_char_sunday">Sunday</string>
 
     <string name="title_activity_maps">Map</string>
     <string name="title_statistics">Statistics</string>
@@ -65,10 +79,11 @@
     <string name="title_fever">Fever</string>
     <string name="title_wear_face_mask">Wear face mask</string>
     <string name="title_wash_your_hands">Wash your hands</string>
-    <string name="text_description_question">If you feel sick with any of covid-19 symptoms please call or SMS us immediately for help.</string>
-    <string name="text_title_rag">Rag</string>
-    <string name="text_content_rag">When you cough or sneeze, cover your nose and mouth with a tissue or with your elbow.</string>
-    <string name="text_title_avoid_close_contact">Avoid close contact</string>
-    <string name="text_title_content_avoid_close_contact">Keep a safe distance from anyone coughing or sneezing.</string>
-    <string name="text_statistic_char_by_week">Biểu đồ thống kê theo tuần</string>
+    <string name="title_rag">Rag</string>
+    <string name="title_avoid_close_contact">Avoid close contact</string>
+    <string name="title_content_avoid_close_contact">Keep a safe distance from anyone coughing or sneezing.</string>
+    <string name="title_newest_news">Newest</string>
+    <string name="title_highlight_news">Featured</string>
+    <string name="title_domestic_news">domestic</string>
+    <string name="title_world_news">World</string>
 </resources>
