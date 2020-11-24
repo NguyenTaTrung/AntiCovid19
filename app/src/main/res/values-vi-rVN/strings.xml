@@ -52,6 +52,20 @@
     <string name="text_content_infor">Bạn nên bật thông báo để nhận thông tin mới nhất về dịch bệnh Covid-19. Bạn muốn bật thông báo?</string>
     <string name="text_notice_content">Nếu bạn tắt thông báo bạn sẽ không nhận được thông tin mới nhất về dịch bệnh Covid-19. Bạn có muốn tắt thông báo?</string>
     <string name="text_empty_edittext">Hãy nhập từ khóa tìm kiếm!</string>
+    <string name="text_description_question">Nếu bạn cảm thấy bị bệnh với bất kỳ triệu chứng covid-19 nào, vui lòng gọi hoặc nhắn tin cho chúng tôi ngay lập tức để được giúp đỡ.</string>
+    <string name="text_content_rag">Khi bạn ho hoặc hắt hơi, hãy che mũi và miệng bằng khăn giấy hoặc bằng khuỷu tay.</string>
+    <string name="text_statistic_char_by_week">Biểu đồ thống kê theo tuần</string>
+    <string name="text_area_warning">Khu vực nguy hiểm</string>
+    <string name="text_char_new_infected">Số ca nhiễm mới</string>
+    <string name="text_char_new_death">Số ca tử vong mới</string>
+    <string name="text_char_new_recovered">Số ca hồi phục mới</string>
+    <string name="text_char_monday">Thứ hai</string>
+    <string name="text_char_tuesday">Thứ ba</string>
+    <string name="text_char_wednesday">Thứ tư</string>
+    <string name="text_char_thursday">Thứ năm</string>
+    <string name="text_char_friday">Thứ sáu</string>
+    <string name="text_char_saturday">Thứ bảy</string>
+    <string name="text_char_sunday">Chủ nhật</string>
 
     <string name="title_activity_main">MainActivity</string>
     <string name="title_activity_maps">Map</string>
@@ -66,11 +80,11 @@
     <string name="title_fever">Sốt</string>
     <string name="title_wear_face_mask">Đeo khẩu trang</string>
     <string name="title_wash_your_hands">Rửa tay sạch</string>
-
-    <string name="text_description_question">Nếu bạn cảm thấy bị bệnh với bất kỳ triệu chứng covid-19 nào, vui lòng gọi hoặc nhắn tin cho chúng tôi ngay lập tức để được giúp đỡ.</string>
-    <string name="text_title_rag">Dùng khăn giấy</string>
-    <string name="text_content_rag">Khi bạn ho hoặc hắt hơi, hãy che mũi và miệng bằng khăn giấy hoặc bằng khuỷu tay.</string>
-    <string name="text_title_avoid_close_contact">Tránh tiếp xúc gần</string>
-    <string name="text_title_content_avoid_close_contact">Giữ khoảng cách an toàn với bất kỳ ai đang ho hoặc hắt hơi.</string>
-    <string name="text_statistic_char_by_week">Biểu đồ thống kê theo tuần</string>
+    <string name="title_rag">Dùng khăn giấy</string>
+    <string name="title_avoid_close_contact">Tránh tiếp xúc gần</string>
+    <string name="title_content_avoid_close_contact">Giữ khoảng cách an toàn với bất kỳ ai đang ho hoặc hắt hơi.</string>
+    <string name="title_newest_news">Mới nhất</string>
+    <string name="title_highlight_news">Nổi bật</string>
+    <string name="title_domestic_news">Trong nước</string>
+    <string name="title_world_news">Thế giới</string>
 </resources>

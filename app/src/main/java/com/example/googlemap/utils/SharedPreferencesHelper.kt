@@ -8,7 +8,7 @@ import com.example.googlemap.utils.PreferencesConst.PREFS_NAME
 import java.lang.ClassCastException
 import kotlin.jvm.Throws
 
-class SharedPreferencesHelper private constructor(context: Context) {
+class SharedPreferencesHelper(context: Context) {
     private var sharedPreferences: SharedPreferences =
         context.getSharedPreferences(PREFS_NAME, MODE_PRIVATE)
 
@@ -32,11 +32,4 @@ class SharedPreferencesHelper private constructor(context: Context) {
     }
 
     fun clear() = sharedPreferences.edit().clear().apply()
-
-    companion object {
-        private var instance: SharedPreferencesHelper? = null
-        fun getInstance(context: Context) =
-            instance ?: SharedPreferencesHelper(context)
-                .also { instance = it }
-    }
 }

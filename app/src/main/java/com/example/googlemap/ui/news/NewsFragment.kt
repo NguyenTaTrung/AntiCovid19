@@ -35,10 +35,10 @@ class NewsFragment : BaseFragment<FragmentNewsBinding>() {
 
         TabLayoutMediator(tabs, viewPager) { tab, position ->
             when (position) {
-                0 -> tab.text = "Mới nhất"
-                1 -> tab.text = "Nổi bật"
-                2 -> tab.text = "Trong nước"
-                3 -> tab.text = "Thế giới"
+                0 -> tab.text = getString(R.string.title_newest_news)
+                1 -> tab.text = getString(R.string.title_highlight_news)
+                2 -> tab.text = getString(R.string.title_domestic_news)
+                3 -> tab.text = getString(R.string.title_world_news)
             }
         }.attach()
     }

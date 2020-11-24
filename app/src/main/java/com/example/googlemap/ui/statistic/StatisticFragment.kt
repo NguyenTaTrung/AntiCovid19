@@ -39,89 +39,7 @@ class StatisticFragment :
             binding.country = it
             radioButtonVietnamese.text = it.country
         } ?: observeData()
-
-        val groupSpace = 0.25f
-        val barSpace = 0.05f
-        val barWidth = 0.2f
-        // (barSpace + barWidth) * column + groupSpace = 1.00 -> interval per "group"
-
-        val xVal = mutableListOf("Th2", "Th3", "Th4", "Th5", "Th6", "Th7", "CN")
-
-        groupBarChart.xAxis.apply {
-            position = XAxis.XAxisPosition.BOTTOM
-            granularity = 1f
-            isGranularityEnabled = true
-            setCenterAxisLabels(true)
-            setDrawGridLines(false)
-            valueFormatter = IndexAxisValueFormatter(xVal)
-        }
-
-        val data1 = intArrayOf(2, 1, 4, 0, 5, 2, 4)
-        val data2 = intArrayOf(0, 1, 0, 0, 0, 1, 2)
-        val data3 = intArrayOf(10, 2, 12, 17, 21, 8, 5)
-
-        val entry1 = mutableListOf<BarEntry>()
-        val entry2 = mutableListOf<BarEntry>()
-        val entry3 = mutableListOf<BarEntry>()
-
-        for (i in data1.indices) {
-            entry1.add(BarEntry(i.toFloat(), data1[i].toFloat()))
-            entry2.add(BarEntry(i.toFloat(), data2[i].toFloat()))
-            entry3.add(BarEntry(i.toFloat(), data3[i].toFloat()))
-        }
-
-        val set1 = BarDataSet(entry1, "Số người tử vong mới")
-        set1.color = resources.getColor(R.color.colorRed, requireActivity().theme)
-        set1.valueTextColor = resources.getColor(R.color.colorRed, requireActivity().theme)
-        set1.valueTextSize = 10f
-        set1.valueFormatter = object : IndexAxisValueFormatter() {
-            override fun getFormattedValue(value: Float): String {
-                return "" + value.toInt()
-            }
-        }
-
-        val set2 = BarDataSet(entry2, "Số người hồi phục mới")
-        set2.color = resources.getColor(R.color.colorGreen, requireActivity().theme)
-        set2.valueTextColor = resources.getColor(R.color.colorGreen, requireActivity().theme)
-        set2.valueTextSize = 10f
-        set2.valueFormatter = object : IndexAxisValueFormatter() {
-            override fun getFormattedValue(value: Float): String {
-                return "" + value.toInt()
-            }
-        }
-
-        val set3 = BarDataSet(entry3, "Số người nhiễm mới")
-        set3.color = resources.getColor(R.color.colorOrange, requireActivity().theme)
-        set3.valueTextColor = resources.getColor(R.color.colorOrange, requireActivity().theme)
-        set3.valueTextSize = 10f
-        set3.valueFormatter = object : IndexAxisValueFormatter() {
-            override fun getFormattedValue(value: Float): String {
-                return "" + value.toInt()
-            }
-        }
-
-        val data = BarData(set3, set1, set2)
-        data.barWidth = barWidth
-
-        groupBarChart.data = data
-        groupBarChart.description = null
-        groupBarChart.setPinchZoom(false)
-        groupBarChart.setScaleEnabled(false)
-        groupBarChart.setDrawBarShadow(false)
-        groupBarChart.setDrawGridBackground(false)
-
-        groupBarChart.setVisibleXRangeMaximum(3f)
-        groupBarChart.moveViewToX(0f)
-
-        groupBarChart.legend.isEnabled = false
-
-        groupBarChart.xAxis.axisMinimum = 0f
-        groupBarChart.xAxis.axisMaximum =
-            0 + groupBarChart.barData.getGroupWidth(groupSpace, barSpace) * xVal.size
-
-        groupBarChart.groupBars(0f, groupSpace, barSpace)
-
-        groupBarChart.invalidate()
+        addGroupBarChart()
     }
 
     override fun initAction() {
@@ -167,5 +85,81 @@ class StatisticFragment :
         error.observe(viewLifecycleOwner, Observer {
             context?.showToast(it)
         })
+    }
+
+    private fun getBarDataSet(entry: List<BarEntry>, colorColumn: Int) =
+        BarDataSet(entry, "").apply {
+            color = resources.getColor(colorColumn, requireActivity().theme)
+            valueTextColor = resources.getColor(colorColumn, requireActivity().theme)
+            valueTextSize = 10f
+            valueFormatter = object : IndexAxisValueFormatter() {
+                override fun getFormattedValue(value: Float): String {
+                    return "" + value.toInt()
+                }
+            }
+        }
+
+    private fun addGroupBarChart() {
+        val groupSpace = 0.25f
+        val barSpace = 0.05f
+        val barWidth = 0.2f
+        // (barSpace + barWidth) * column + groupSpace = 1.00 -> interval per "group"
+
+        val xVal = mutableListOf(
+            getString(R.string.text_char_monday),
+            getString(R.string.text_char_tuesday),
+            getString(R.string.text_char_wednesday),
+            getString(R.string.text_char_thursday),
+            getString(R.string.text_char_friday),
+            getString(R.string.text_char_saturday),
+            getString(R.string.text_char_sunday)
+        )
+
+        val deathData = intArrayOf(2, 1, 4, 0, 5, 2, 4)
+        val recoveredData = intArrayOf(0, 1, 0, 0, 0, 1, 2)
+        val infectedData = intArrayOf(10, 2, 12, 17, 21, 8, 5)
+
+        val entryDeath = mutableListOf<BarEntry>()
+        val entryRecovered = mutableListOf<BarEntry>()
+        val entryInfected = mutableListOf<BarEntry>()
+
+        for (i in deathData.indices) {
+            entryDeath.add(BarEntry(i.toFloat(), deathData[i].toFloat()))
+            entryRecovered.add(BarEntry(i.toFloat(), recoveredData[i].toFloat()))
+            entryInfected.add(BarEntry(i.toFloat(), infectedData[i].toFloat()))
+        }
+
+        val data = BarData(
+            getBarDataSet(entryInfected, R.color.colorOrange),
+            getBarDataSet(entryDeath, R.color.colorRed),
+            getBarDataSet(entryRecovered, R.color.colorGreen),
+        )
+        data.barWidth = barWidth
+
+        groupBarChart.run {
+            this.data = data
+            xAxis.apply {
+                position = XAxis.XAxisPosition.BOTTOM
+                granularity = 1f
+                axisMinimum = 0f
+                isGranularityEnabled = true
+                setCenterAxisLabels(true)
+                setDrawGridLines(false)
+                valueFormatter = IndexAxisValueFormatter(xVal)
+            }
+
+            description = null
+            setPinchZoom(false)
+            setScaleEnabled(false)
+            setDrawBarShadow(false)
+            setDrawGridBackground(false)
+            setVisibleXRangeMaximum(3f)
+            moveViewToX(0f)
+            legend.isEnabled = false
+            xAxis.axisMaximum = 0 + barData.getGroupWidth(groupSpace, barSpace) * xVal.size
+
+            groupBars(0f, groupSpace, barSpace)
+            invalidate()
+        }
     }
 }

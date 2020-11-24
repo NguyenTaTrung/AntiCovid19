@@ -6,6 +6,7 @@ import com.example.googlemap.data.resource.InformationRepository
 import com.example.googlemap.data.resource.local.InformationLocalDataSource
 import com.example.googlemap.data.resource.local.db.MyDatabase
 import com.example.googlemap.data.resource.remote.InformationRemoteDataSource
+import com.example.googlemap.utils.SharedPreferencesHelper
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.qualifier.named
 import org.koin.dsl.module
@@ -23,6 +24,7 @@ val repoModule = module {
 }
 
 val informationRepo = module {
+    single { SharedPreferencesHelper(get()) }
     single<InformationDataSource.Remote> {
         InformationRemoteDataSource(
             get(named("ApiService")),
