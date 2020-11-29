@@ -1,6 +1,7 @@
 package com.example.googlemap.data.resource
 
 import com.example.googlemap.data.model.CaseInformation
+import com.example.googlemap.data.model.DetailCase
 import com.example.googlemap.data.model.Summary
 import com.example.googlemap.data.model.rss.Rss
 import io.reactivex.rxjava3.core.Observable
@@ -11,6 +12,8 @@ class InformationRepository(
 ) : InformationDataSource.Remote, InformationDataSource.Local {
 
     override fun getInformation(): Observable<List<CaseInformation>> = remote.getInformation()
+
+    override fun getDetailInformation(id: Int): Observable<List<DetailCase>> = remote.getDetailInformation(id)
 
     override fun getSummaryData(): Observable<Summary> = remote.getSummaryData()
 
