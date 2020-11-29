@@ -15,6 +15,7 @@ class App : Application() {
                 networkModule,
                 repoModule,
                 informationRepo,
+                locationRepo,
                 viewModelModule)
             )
         }

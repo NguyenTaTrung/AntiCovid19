@@ -1,6 +1,5 @@
 package com.example.googlemap.ui.statistic
 
-import android.content.Intent
 import android.widget.RadioGroup
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
@@ -9,7 +8,6 @@ import com.example.googlemap.R
 import com.example.googlemap.base.BaseFragment
 import com.example.googlemap.databinding.FragmentStatisticsBinding
 import com.example.googlemap.ui.dialog.LoadingDialog
-import com.example.googlemap.ui.map.MapActivity
 import com.example.googlemap.utils.showToast
 import com.github.mikephil.charting.components.XAxis
 import com.github.mikephil.charting.data.*
@@ -48,12 +46,7 @@ class StatisticFragment :
             findNavController().navigate(StatisticFragmentDirections.actionToDetailCountryFragment())
         }
         textViewExtend.setOnClickListener {
-            startActivity(
-                Intent(
-                    context,
-                    MapActivity::class.java
-                )
-            )
+            findNavController().navigate(StatisticFragmentDirections.actionToMapFragment())
         }
     }
 

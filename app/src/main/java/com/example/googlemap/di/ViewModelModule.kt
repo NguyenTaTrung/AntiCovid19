@@ -18,7 +18,7 @@ val viewModelModule = module {
     viewModel { HomeViewModel(get()) }
     viewModel { StatisticViewModel(get()) }
     viewModel { DetailCountryViewModel(get()) }
-    viewModel { MapViewModel(get()) }
+    viewModel { MapViewModel(get(), get()) }
     viewModel { HighlightNewsViewModel(get()) }
     viewModel { NewestNewsViewModel(get()) }
     viewModel { WorldNewsViewModel(get()) }

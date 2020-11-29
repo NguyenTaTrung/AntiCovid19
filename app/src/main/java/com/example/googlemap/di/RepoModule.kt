@@ -3,6 +3,8 @@ package com.example.googlemap.di
 import androidx.room.Room
 import com.example.googlemap.data.resource.InformationDataSource
 import com.example.googlemap.data.resource.InformationRepository
+import com.example.googlemap.data.resource.LocationRepository
+import com.example.googlemap.data.resource.MyLocationManager
 import com.example.googlemap.data.resource.local.InformationLocalDataSource
 import com.example.googlemap.data.resource.local.db.MyDatabase
 import com.example.googlemap.data.resource.remote.InformationRemoteDataSource
@@ -35,4 +37,9 @@ val informationRepo = module {
     single<InformationDataSource.Local> { InformationLocalDataSource(get()) }
 
     single { InformationRepository(get(), get()) }
+}
+
+val locationRepo = module {
+    single { MyLocationManager(get(), get()) }
+    single { LocationRepository(get()) }
 }

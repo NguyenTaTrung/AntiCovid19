@@ -26,6 +26,10 @@
             android:id="@+id/actionToDetailCountryFragment"
             app:destination="@id/detailCountryFragment" />
 
+        <action
+            android:id="@+id/actionToMapFragment"
+            app:destination="@id/mapFragment" />
+
         <argument
             android:name="bundleCountry"
             app:argType="com.example.googlemap.data.model.Country"
@@ -49,6 +53,12 @@
             android:id="@+id/actionToNavigationStatistic"
             app:destination="@id/navigation_statistic" />
     </fragment>
+
+    <fragment
+        android:id="@+id/mapFragment"
+        android:name="com.example.googlemap.ui.map.MapFragment"
+        android:label="MapFragment"
+        tools:layout="@layout/fragment_map"/>
 
     <dialog
         android:id="@+id/symptomDialog"

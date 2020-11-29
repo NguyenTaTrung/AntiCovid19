@@ -87,4 +87,33 @@
     <string name="title_highlight_news">Nổi bật</string>
     <string name="title_domestic_news">Trong nước</string>
     <string name="title_world_news">Thế giới</string>
+    <string name="title_name">Tên:</string>
+    <string name="title_age">Tuổi:</string>
+    <string name="title_detecting_location">Nơi phát hiện:</string>
+    <string name="title_time">Thời gian:</string>
+    <string name="title_address">Địa chỉ:</string>
+    <string name="title_place">Địa điểm:</string>
+
+    <string name="fine_location_permission_rationale">Cho phép truy cập vị trí là cần thiết.</string>
+    <string name="fine_permission_denied_explanation">Quyền đã bị từ chối, nhưng chức năng này cần truy cập vị trí.</string>
+
+    <string name="background_location_permission_rationale">Cho phép truy cập vị trí trong nền.</string>
+    <string name="background_permission_denied_explanation">Quyền đã bị từ chối, nhưng chức năng này cần truy cập vị trí trong nền</string>
+
+    <string name="settings">Cài đặt</string>
+    <string name="ok">Đồng ý</string>
+
+    <string name="fine_location_access_rationale_title_text">Định vị vị trí của bạn!</string>
+    <string name="fine_location_access_rationale_details_text">Để tính năng này hoạt động, vui lòng phê duyệt quyền truy cập vào vị trí của bạn qua nút bên dưới.</string>
+
+    <string name="background_location_access_rationale_title_text">Cải thiện độ chính xác của vị trí!</string>
+    <string name="background_location_access_rationale_details_text">Để có thể xác định chính xác khoảng cách gần nhất với các ca nhiễm xung quanh bạn, bảo đạm sự an toàn cho bạn và mọi người xung quanh</string>
+
+    <string name="request_updates">Request updates</string>
+    <string name="remove_updates">Remove updates</string>
+    <string name="unknown_location">Unknown location</string>
+
+    <string name="batched_location_updates">Batched location updates</string>
+    <string name="emptyLocationDatabaseMessage">To start receiving location updates, please click the button below!</string>
+
 </resources>
