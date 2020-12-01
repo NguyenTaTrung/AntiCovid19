@@ -1,5 +1,6 @@
 package com.example.googlemap.ui.statistic
 
+import android.view.View
 import android.widget.RadioGroup
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
@@ -8,16 +9,24 @@ import com.example.googlemap.R
 import com.example.googlemap.base.BaseFragment
 import com.example.googlemap.databinding.FragmentStatisticsBinding
 import com.example.googlemap.ui.dialog.LoadingDialog
+import com.example.googlemap.utils.TimeConst.INPUT_TIME_FORMAT
+import com.example.googlemap.utils.TimeConst.PATTERN_TIME_GROUP_CHART
 import com.example.googlemap.utils.showToast
 import com.github.mikephil.charting.components.XAxis
 import com.github.mikephil.charting.data.*
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter
+import com.google.android.material.datepicker.CalendarConstraints
+import com.google.android.material.datepicker.DateValidatorPointBackward
+import com.google.android.material.datepicker.MaterialDatePicker
 import kotlinx.android.synthetic.main.fragment_statistics.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import java.text.SimpleDateFormat
+import java.util.*
 
 class StatisticFragment :
     BaseFragment<FragmentStatisticsBinding>(),
-    RadioGroup.OnCheckedChangeListener {
+    RadioGroup.OnCheckedChangeListener
+{
 
     private val viewModel by viewModel<StatisticViewModel>()
     private val navArgs by navArgs<StatisticFragmentArgs>()
@@ -32,12 +41,15 @@ class StatisticFragment :
     override fun initData() {
         context?.let { dialogLoading = LoadingDialog(it) }
         navArgs.bundleCountry?.let {
+            guidelineTop.setGuidelinePercent(0.24f)
+            textViewChart.visibility = View.GONE
+            cardViewChart.visibility = View.GONE
+            buttonSelectTime.visibility = View.GONE
             binding.isVisibleRadioButton = false
             binding.isVietNam = true
             binding.country = it
             radioButtonVietnamese.text = it.country
         } ?: observeData()
-        addGroupBarChart()
     }
 
     override fun initAction() {
@@ -48,6 +60,7 @@ class StatisticFragment :
         textViewExtend.setOnClickListener {
             findNavController().navigate(StatisticFragmentDirections.actionToMapFragment())
         }
+        buttonSelectTime.setOnClickListener { openDatePickerDialog() }
     }
 
     override fun onCheckedChanged(group: RadioGroup?, id: Int) {
@@ -75,9 +88,48 @@ class StatisticFragment :
             binding.global = it
         })
 
+        message.observe(viewLifecycleOwner, Observer {
+            binding.date = it
+        })
+
+        countryStatus.observe(viewLifecycleOwner, Observer {
+            val confirmed = mutableListOf<Int>()
+            val deaths = mutableListOf<Int>()
+            val recovered = mutableListOf<Int>()
+            val xVal = mutableListOf<String>()
+            val inputFormat = SimpleDateFormat(INPUT_TIME_FORMAT, Locale.getDefault())
+            val outputFormat = SimpleDateFormat(PATTERN_TIME_GROUP_CHART, Locale.getDefault())
+            for (i in it.indices) {
+                var index = i
+                index++
+                if (index < it.size) {
+                    xVal.add(outputFormat.format(inputFormat.parse(it[index].date)!!))
+                    confirmed.add(it[index].confirmed.minus(it[i].confirmed))
+                    deaths.add(it[index].deaths.minus(it[i].deaths))
+                    recovered.add(it[index].recovered.minus(it[i].recovered))
+                }
+            }
+            addGroupBarChart(xVal, confirmed, deaths, recovered)
+        })
+
         error.observe(viewLifecycleOwner, Observer {
             context?.showToast(it)
         })
+    }
+
+    private fun openDatePickerDialog() {
+        val calendarConstraints = CalendarConstraints.Builder()
+            .setValidator(DateValidatorPointBackward.before(Calendar.getInstance().timeInMillis))
+        val datePicker =
+            MaterialDatePicker.Builder
+                .dateRangePicker()
+                .setTitleText(getString(R.string.title_dialog_date))
+                .setCalendarConstraints(calendarConstraints.build())
+                .build()
+        datePicker.show(childFragmentManager, null)
+        datePicker.addOnPositiveButtonClickListener {
+            viewModel.getCountryAllStatus(it.first, it.second, false)
+        }
     }
 
     private fun getBarDataSet(entry: List<BarEntry>, colorColumn: Int) =
@@ -92,25 +144,16 @@ class StatisticFragment :
             }
         }
 
-    private fun addGroupBarChart() {
+    private fun addGroupBarChart(
+        xVal: List<String>,
+        deathData: List<Int>,
+        recoveredData: List<Int>,
+        infectedData: List<Int>
+    ) {
         val groupSpace = 0.25f
         val barSpace = 0.05f
         val barWidth = 0.2f
         // (barSpace + barWidth) * column + groupSpace = 1.00 -> interval per "group"
-
-        val xVal = mutableListOf(
-            getString(R.string.text_char_monday),
-            getString(R.string.text_char_tuesday),
-            getString(R.string.text_char_wednesday),
-            getString(R.string.text_char_thursday),
-            getString(R.string.text_char_friday),
-            getString(R.string.text_char_saturday),
-            getString(R.string.text_char_sunday)
-        )
-
-        val deathData = intArrayOf(2, 1, 4, 0, 5, 2, 4)
-        val recoveredData = intArrayOf(0, 1, 0, 0, 0, 1, 2)
-        val infectedData = intArrayOf(10, 2, 12, 17, 21, 8, 5)
 
         val entryDeath = mutableListOf<BarEntry>()
         val entryRecovered = mutableListOf<BarEntry>()
@@ -142,6 +185,7 @@ class StatisticFragment :
             }
 
             description = null
+            setNoDataText(getString(R.string.msg_no_data_available))
             setPinchZoom(false)
             setScaleEnabled(false)
             setDrawBarShadow(false)

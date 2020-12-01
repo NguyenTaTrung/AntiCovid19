@@ -1,9 +1,6 @@
 package com.example.googlemap.data.resource
 
-import com.example.googlemap.data.model.CaseInformation
-import com.example.googlemap.data.model.DetailCase
-import com.example.googlemap.data.model.Summary
-import com.example.googlemap.data.model.Symptom
+import com.example.googlemap.data.model.*
 import com.example.googlemap.data.model.rss.Rss
 import io.reactivex.rxjava3.core.Observable
 
@@ -17,6 +14,7 @@ interface InformationDataSource {
         fun getInformation(): Observable<List<CaseInformation>>
         fun getDetailInformation(id: Int): Observable<List<DetailCase>>
         fun getSummaryData(): Observable<Summary>
+        fun getCountryAllStatus(fromDate: String, toDate: String): Observable<List<CountryStatus>>
         fun getWorldNewsVNExpress(): Observable<Rss>
         fun getNewestNewsVNExpress(): Observable<Rss>
         fun getHighlightVNExpress(): Observable<Rss>

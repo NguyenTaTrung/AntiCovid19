@@ -1,6 +1,7 @@
 package com.example.googlemap.data.resource
 
 import com.example.googlemap.data.model.CaseInformation
+import com.example.googlemap.data.model.CountryStatus
 import com.example.googlemap.data.model.DetailCase
 import com.example.googlemap.data.model.Summary
 import com.example.googlemap.data.model.rss.Rss
@@ -16,6 +17,8 @@ class InformationRepository(
     override fun getDetailInformation(id: Int): Observable<List<DetailCase>> = remote.getDetailInformation(id)
 
     override fun getSummaryData(): Observable<Summary> = remote.getSummaryData()
+
+    override fun getCountryAllStatus(fromDate: String, toDate: String): Observable<List<CountryStatus>> = remote.getCountryAllStatus(fromDate, toDate)
 
     override fun getWorldNewsVNExpress(): Observable<Rss> = remote.getWorldNewsVNExpress()
 

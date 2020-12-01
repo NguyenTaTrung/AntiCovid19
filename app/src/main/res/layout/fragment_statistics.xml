@@ -7,6 +7,10 @@
         <import type="android.view.View" />
 
         <variable
+            name="date"
+            type="String" />
+
+        <variable
             name="isVietNam"
             type="Boolean" />
 
@@ -405,6 +409,25 @@
                 app:layout_constraintStart_toStartOf="@id/textViewWarning"
                 app:layout_constraintTop_toBottomOf="@id/cardViewMap" />
 
+            <TextView
+                android:id="@+id/textViewTime"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_10"
+                android:text="@{date}"
+                android:textSize="@dimen/sp_16"
+                app:layout_constraintStart_toStartOf="@id/textViewWarning"
+                app:layout_constraintTop_toBottomOf="@id/textViewChart" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/buttonSelectTime"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/dp_45"
+                android:text="@string/text_select_day"
+                app:layout_constraintBottom_toBottomOf="@id/textViewTime"
+                app:layout_constraintEnd_toEndOf="@+id/textViewExtend"
+                app:layout_constraintTop_toTopOf="@id/textViewTime" />
+
             <androidx.cardview.widget.CardView
                 android:id="@+id/cardViewChart"
                 android:layout_width="0dp"
@@ -414,7 +437,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="@+id/cardViewStatistics"
                 app:layout_constraintStart_toStartOf="@+id/cardViewStatistics"
-                app:layout_constraintTop_toBottomOf="@id/textViewChart">
+                app:layout_constraintTop_toBottomOf="@id/textViewTime">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
