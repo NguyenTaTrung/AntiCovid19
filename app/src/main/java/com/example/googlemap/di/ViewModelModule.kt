@@ -16,7 +16,7 @@ import org.koin.dsl.module
 val viewModelModule = module {
     viewModel { MainViewModel(get()) }
     viewModel { HomeViewModel(get()) }
-    viewModel { StatisticViewModel(get()) }
+    viewModel { StatisticViewModel(get(), get()) }
     viewModel { DetailCountryViewModel(get()) }
     viewModel { MapViewModel(get(), get()) }
     viewModel { HighlightNewsViewModel(get()) }

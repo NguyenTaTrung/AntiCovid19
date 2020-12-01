@@ -13,6 +13,7 @@
     <string name="msg_notification_off">Bạn đã đã tắt hiển thị thông báo</string>
     <string name="msg_search_fail">Không có kết quả!</string>
     <string name="msg_connection_fail">Yêu cầu kiểm tra lại kết nối</string>
+    <string name="msg_no_data_available">Chưa có dữ liệu\u0020</string>
 
     <string name="radio_button_vietnamese">Việt nam</string>
     <string name="radio_button_worlds">Thế giới</string>
@@ -66,6 +67,10 @@
     <string name="text_char_friday">Thứ sáu</string>
     <string name="text_char_saturday">Thứ bảy</string>
     <string name="text_char_sunday">Chủ nhật</string>
+    <string name="text_select_day">chọn ngày</string>
+    <string name="text_from_date">"Từ:\u0020"</string>
+    <string name="text_to_date">\n\n"Đến:\u0020"</string>
+    <string name="text_date_time">Ngày:\u0020</string>
 
     <string name="title_activity_main">MainActivity</string>
     <string name="title_activity_maps">Map</string>
@@ -93,6 +98,7 @@
     <string name="title_time">Thời gian:</string>
     <string name="title_address">Địa chỉ:</string>
     <string name="title_place">Địa điểm:</string>
+    <string name="title_dialog_date">Chọn một khoảng thời gian</string>
 
     <string name="fine_location_permission_rationale">Cho phép truy cập vị trí là cần thiết.</string>
     <string name="fine_permission_denied_explanation">Quyền đã bị từ chối, nhưng chức năng này cần truy cập vị trí.</string>

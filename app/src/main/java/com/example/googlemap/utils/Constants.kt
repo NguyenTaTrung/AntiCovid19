@@ -10,6 +10,10 @@ object TimeConst {
     const val OUTPUT_TIME_FORMAT = "HH:mm, dd/MM/yyyy"
     const val TIME_NEWS_FORMAT = "EEE, dd MMM yyyy HH:mm:ss Z"
     const val ID_TIMEZONE = "UTC"
+    const val TIME_ZONE = "T00:00:00Z"
+    const val PATTERN_TIME_VN = "dd-MM-yyyy"
+    const val PATTERN_TIME_EN = "yyyy-MM-dd"
+    const val PATTERN_TIME_GROUP_CHART = "dd-MM"
 }
 
 object PreferencesConst {
