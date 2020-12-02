@@ -5,11 +5,10 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.googlemap.R
 import com.example.googlemap.base.RxViewModel
-import com.example.googlemap.data.model.Country
-import com.example.googlemap.data.model.CountryStatus
-import com.example.googlemap.data.model.Global
-import com.example.googlemap.data.model.Summary
-import com.example.googlemap.data.resource.InformationRepository
+import com.example.googlemap.data.model.*
+import com.example.googlemap.data.resource.repository.InformationRepository
+import com.example.googlemap.data.resource.repository.TimeRepository
+import com.example.googlemap.data.resource.local.entity.Information
 import com.example.googlemap.utils.TimeConst.PATTERN_TIME_EN
 import com.example.googlemap.utils.TimeConst.PATTERN_TIME_VN
 import com.example.googlemap.utils.TimeConst.TIME_ZONE
@@ -21,8 +20,10 @@ import java.util.*
 
 class StatisticViewModel(
     private val repository: InformationRepository,
+    private val timeRepository: TimeRepository,
     private val application: Application
 ) : RxViewModel() {
+    val isAllowNotification: LiveData<Boolean> = timeRepository.isAllowNotification
 
     private val _summary = MutableLiveData<Summary>()
     val summary: LiveData<Summary>
@@ -54,12 +55,14 @@ class StatisticViewModel(
             set(Calendar.DAY_OF_WEEK, firstDayOfWeek)
         }
         getCountryAllStatus(calendar.timeInMillis, Calendar.getInstance().timeInMillis, true)
+        if (isAllowNotification.value == true) startAlarm()
         repository.getSummaryData()
             .subscribeOn(io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({
                 _summary.value = it
                 getVietNamInformation()
+                justAddOneInformation()
                 _isLoading.value = false
             }, {
                 _error.value = it.message.toString()
@@ -110,6 +113,37 @@ class StatisticViewModel(
                 inputTimeEn.format(fromTime?.minus(86400000)) + TIME_ZONE,
                 inputTimeEn.format(toTime) + TIME_ZONE,
             )
+        }
+    }
+
+    fun startAlarm() = timeRepository.createAlarm()
+    fun cancelAlarm() = timeRepository.cancelAlarm()
+
+    fun updateNotification(isAllowNotification: Boolean) = timeRepository.updateNotification(isAllowNotification)
+
+    private fun justAddOneInformation() {
+        vietNamInformation.value?.let { country ->
+            repository.informationCount()
+                .subscribeOn(io())
+                .subscribeOn(AndroidSchedulers.mainThread())
+                .filter { it == 0 }
+                .flatMapCompletable {
+                    repository.addInformation(
+                        Information(
+                            null,
+                            country.newConfirmed,
+                            country.totalConfirmed,
+                            country.newDeaths,
+                            country.totalDeaths,
+                            country.newRecovered,
+                            country.totalRecovered
+                        )
+                    )
+                }
+                .subscribe({}, {
+                    _error.value = it.message.toString()
+                })
+                .addTo(disposables)
         }
     }
 

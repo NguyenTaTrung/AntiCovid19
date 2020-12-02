@@ -1,20 +1,25 @@
 package com.example.googlemap.data.resource.local.dao
 
-import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
 import androidx.room.Update
-import com.example.googlemap.data.model.Information
+import com.example.googlemap.data.resource.local.entity.Information
+import io.reactivex.rxjava3.core.Completable
+import io.reactivex.rxjava3.core.Flowable
+import io.reactivex.rxjava3.core.Single
 
 @Dao
 interface InformationDao {
     @Query("SELECT * FROM information ORDER BY id DESC LIMIT 1")
-    fun getLastInformation(): LiveData<Information>
+    fun getLastInformation(): Flowable<Information>
+
+    @Query("SELECT COUNT(*) FROM information")
+    fun informationCount(): Single<Int>
 
     @Insert
-    fun addInformation(information: Information)
+    fun addInformation(information: Information): Completable
 
     @Update
-    fun updateInformation(information: Information)
+    fun updateInformation(information: Information): Completable
 }

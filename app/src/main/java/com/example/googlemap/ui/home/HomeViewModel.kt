@@ -3,7 +3,7 @@ package com.example.googlemap.ui.home
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.googlemap.base.RxViewModel
-import com.example.googlemap.data.resource.InformationRepository
+import com.example.googlemap.data.resource.repository.InformationRepository
 
 class HomeViewModel(private val repository: InformationRepository) : RxViewModel() {
 

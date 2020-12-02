@@ -17,6 +17,7 @@ import com.example.googlemap.data.model.DetailCase
 import com.example.googlemap.databinding.FragmentMapBinding
 import com.example.googlemap.ui.dialog.BackgroundPermissionDialog
 import com.example.googlemap.ui.dialog.PermissionRequestType
+import com.example.googlemap.ui.main.BottomNavigationListener
 import com.example.googlemap.utils.hasPermission
 import com.example.googlemap.utils.showToast
 import com.google.android.gms.location.FusedLocationProviderClient
@@ -33,7 +34,6 @@ class MapFragment :
     GoogleMap.OnMarkerClickListener,
     BackgroundPermissionDialog.BackgroundDialogCallbacks
 {
-
     private var client: FusedLocationProviderClient? = null
     private var mapFragment: SupportMapFragment? = null
     private var marker: Marker? = null
@@ -43,12 +43,18 @@ class MapFragment :
     private var newMarkerMap = mutableMapOf<Marker?, DetailCase>()
     private val viewModel by viewModel<MapViewModel>()
     private var canBackPress = true
+    private var bottomNavigationListener: BottomNavigationListener? = null
 
     override val layoutResources: Int
         get() = R.layout.fragment_map
 
     override val statusBarColor: Int
         get() = R.color.colorPrimary
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        if (context is BottomNavigationListener) bottomNavigationListener = context
+    }
 
     override fun initData() {
         mapFragment =
@@ -84,6 +90,7 @@ class MapFragment :
                         return
                     }
                     findNavController().popBackStack()
+                    bottomNavigationListener?.showBottomNav()
                 }
             })
     }
@@ -129,6 +136,11 @@ class MapFragment :
         ) {
             viewModel.stopLocationUpdates()
         }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        bottomNavigationListener = null
     }
 
     private fun observeData() = with(viewModel) {

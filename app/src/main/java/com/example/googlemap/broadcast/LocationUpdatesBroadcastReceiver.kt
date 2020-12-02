@@ -1,18 +1,13 @@
 package com.example.googlemap.broadcast
 
-import android.app.NotificationChannel
-import android.app.NotificationManager
 import android.app.PendingIntent
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
-import android.graphics.BitmapFactory
-import android.graphics.Color
-import android.os.Build
-import androidx.core.app.NotificationCompat
 import com.example.googlemap.R
 import com.example.googlemap.data.model.CaseInformation
 import com.example.googlemap.ui.main.MainActivity
+import com.example.googlemap.utils.NotificationUtils
 import com.example.googlemap.utils.PreferencesConst.PREFS_ID_COVID_CASE_INFORMATION
 import com.example.googlemap.utils.SharedPreferencesHelper
 import com.google.android.gms.location.LocationResult
@@ -45,7 +40,13 @@ class LocationUpdatesBroadcastReceiver : BroadcastReceiver() {
                     if (listCaseInformation.isNotEmpty()) {
                         listCaseInformation.forEach {
                             if (getValueSharePreferences(it.id) != it.id) {
-                                sendNotification(context, listCaseInformation.size)
+                                NotificationUtils.create(
+                                    context,
+                                    context.getString(R.string.title_notification_location_update),
+                                    context.getString(R.string.msg_notification_location_update, listCaseInformation.size),
+                                    R.drawable.ic_warning,
+                                    getPendingIntent(context)
+                                )
                                 putValueSharePreferences(it.id)
                             }
                         }
@@ -56,43 +57,9 @@ class LocationUpdatesBroadcastReceiver : BroadcastReceiver() {
         }
     }
 
-    private fun sendNotification(context: Context, count: Int) {
+    private fun getPendingIntent(context: Context): PendingIntent {
         val notificationIntent = Intent(context, MainActivity::class.java)
-        //notificationIntent.putExtra("from_notification", true)
-
-        val notificationPendingIntent =
-            PendingIntent.getActivity(context, 0, notificationIntent, 0)
-
-        val builder = NotificationCompat.Builder(context, CHANNEL_ID)
-
-        builder.setSmallIcon(R.mipmap.ic_launcher)
-            .setLargeIcon(
-                BitmapFactory.decodeResource(
-                    context.resources,
-                    R.mipmap.ic_launcher
-                )
-            )
-            .setColor(Color.RED)
-            .setContentTitle("Location update")
-            .setContentText("Cảnh báo có $count người nhiễm bệnh trong khu vực bạn sinh sống")
-            .setContentIntent(notificationPendingIntent)
-
-        builder.setAutoCancel(true)
-
-        val mNotificationManager =
-            context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            val name: CharSequence = context.getString(R.string.app_name)
-            val mChannel =
-                NotificationChannel(CHANNEL_ID, name, NotificationManager.IMPORTANCE_DEFAULT)
-
-            mNotificationManager.createNotificationChannel(mChannel)
-
-            builder.setChannelId(CHANNEL_ID)
-        }
-
-        mNotificationManager.notify(NOTIFICATION_ID, builder.build())
+        return PendingIntent.getActivity(context, 0, notificationIntent, 0)
     }
 
     private fun calculator(lat1: Double, lon1: Double, lat2: Double, lon2: Double): Double {
@@ -118,8 +85,6 @@ class LocationUpdatesBroadcastReceiver : BroadcastReceiver() {
         sharedPreferences?.get(PREFS_ID_COVID_CASE_INFORMATION + "$id", Int::class.java)
 
     companion object {
-        private const val CHANNEL_ID = "channel_01"
-        private const val NOTIFICATION_ID = 15
         const val ACTION_PROCESS_UPDATES =
             "com.google.android.gms.location.sample.locationupdatesbackgroundkotlin.action." +
                     "PROCESS_UPDATES"

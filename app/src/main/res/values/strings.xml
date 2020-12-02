@@ -13,6 +13,7 @@
     <string name="msg_search_fail">No result!</string>
     <string name="msg_connection_fail">Please check your internet connection!</string>
     <string name="msg_no_data_available">No data available\u0020</string>
+    <string name="msg_notification_location_update">Alerts %d infected people in the area you live</string>
 
     <string name="radio_button_vietnamese">Vietnamese</string>
     <string name="radio_button_worlds">Worlds</string>
@@ -98,6 +99,7 @@
     <string name="title_address">Address:</string>
     <string name="title_place">Place:</string>
     <string name="title_dialog_date">Select a date range</string>
+    <string name="title_notification_location_update">Warning</string>
 
     <string name="fine_location_permission_rationale">The fine location permission is needed.</string>
     <string name="fine_permission_denied_explanation">Fine location permission was denied, but is needed.</string>

@@ -1,13 +1,14 @@
 package com.example.googlemap.di
 
 import androidx.room.Room
-import com.example.googlemap.data.resource.InformationDataSource
-import com.example.googlemap.data.resource.InformationRepository
-import com.example.googlemap.data.resource.LocationRepository
-import com.example.googlemap.data.resource.MyLocationManager
+import com.example.googlemap.data.resource.*
 import com.example.googlemap.data.resource.local.InformationLocalDataSource
+import com.example.googlemap.data.resource.local.TimeLocalDataSource
 import com.example.googlemap.data.resource.local.db.MyDatabase
 import com.example.googlemap.data.resource.remote.InformationRemoteDataSource
+import com.example.googlemap.data.resource.repository.InformationRepository
+import com.example.googlemap.data.resource.repository.LocationRepository
+import com.example.googlemap.data.resource.repository.TimeRepository
 import com.example.googlemap.utils.SharedPreferencesHelper
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.qualifier.named
@@ -34,12 +35,27 @@ val informationRepo = module {
             get(named("ApiRss"))
         )
     }
-    single<InformationDataSource.Local> { InformationLocalDataSource(get()) }
+    single<InformationDataSource.Local> { InformationLocalDataSource(get(), get()) }
 
-    single { InformationRepository(get(), get()) }
+    single {
+        InformationRepository(
+            get(),
+            get()
+        )
+    }
 }
 
 val locationRepo = module {
     single { MyLocationManager(get(), get()) }
-    single { LocationRepository(get()) }
+    single {
+        LocationRepository(
+            get()
+        )
+    }
+}
+
+val timeRepo = module {
+    single { AlarmManager(get()) }
+    single<TimeDataSource.Local> { TimeLocalDataSource(get(), get()) }
+    single { TimeRepository(get()) }
 }

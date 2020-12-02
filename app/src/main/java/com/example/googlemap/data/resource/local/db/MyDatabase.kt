@@ -2,7 +2,7 @@ package com.example.googlemap.data.resource.local.db
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
-import com.example.googlemap.data.model.Information
+import com.example.googlemap.data.resource.local.entity.Information
 import com.example.googlemap.data.resource.local.dao.InformationDao
 
 @Database(entities = [Information::class], version = 1)

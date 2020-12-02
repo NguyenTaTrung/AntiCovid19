@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.googlemap.base.RxViewModel
 import com.example.googlemap.data.model.Country
-import com.example.googlemap.data.resource.InformationRepository
+import com.example.googlemap.data.resource.repository.InformationRepository
 import com.example.googlemap.utils.ModelConst.TOTAL_CONFIRMED
 import com.example.googlemap.utils.ModelConst.TOTAL_DEATHS
 import com.example.googlemap.utils.ModelConst.TOTAL_RECOVERED

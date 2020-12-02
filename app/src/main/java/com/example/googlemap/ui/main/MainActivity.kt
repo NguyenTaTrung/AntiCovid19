@@ -3,6 +3,7 @@ package com.example.googlemap.ui.main
 import android.content.res.Resources
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.findNavController
 import androidx.lifecycle.Observer
@@ -13,7 +14,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.util.*
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), BottomNavigationListener {
 
     private val viewModel by viewModel<MainViewModel>()
 
@@ -38,5 +39,13 @@ class MainActivity : AppCompatActivity() {
         val configuration = resources.configuration
         configuration.locale = locale
         resources.updateConfiguration(configuration, resources.displayMetrics)
+    }
+
+    override fun showBottomNav() {
+        bottomNavigationView.visibility = View.VISIBLE
+    }
+
+    override fun hideBottomNav() {
+        bottomNavigationView.visibility = View.GONE
     }
 }
