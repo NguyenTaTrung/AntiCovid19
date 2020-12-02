@@ -1,4 +1,4 @@
-package com.example.googlemap.data.model
+package com.example.googlemap.data.resource.local.entity
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
@@ -19,9 +19,5 @@ data class Information (
     @ColumnInfo(name = "new_recovered")
     val newRecovered: Int,
     @ColumnInfo(name = "total_recovered")
-    val totalRecovered: Int,
-    @ColumnInfo(name = "newest_time")
-    val newestTime: String,
-    @ColumnInfo(name = "day")
-    val day: String
+    val totalRecovered: Int
 )

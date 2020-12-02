@@ -75,6 +75,7 @@ class DetailCountryFragment :
 
     override fun onRefresh() {
         viewModel.getDataApi()
+        hintIcon()
     }
 
     private fun observeData() = with(viewModel) {

@@ -16,6 +16,7 @@ class App : Application() {
                 repoModule,
                 informationRepo,
                 locationRepo,
+                timeRepo,
                 viewModelModule)
             )
         }

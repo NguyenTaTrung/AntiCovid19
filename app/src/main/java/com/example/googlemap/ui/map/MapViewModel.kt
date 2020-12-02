@@ -5,8 +5,8 @@ import androidx.lifecycle.MutableLiveData
 import com.example.googlemap.base.RxViewModel
 import com.example.googlemap.data.model.CaseInformation
 import com.example.googlemap.data.model.DetailCase
-import com.example.googlemap.data.resource.InformationRepository
-import com.example.googlemap.data.resource.LocationRepository
+import com.example.googlemap.data.resource.repository.InformationRepository
+import com.example.googlemap.data.resource.repository.LocationRepository
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.kotlin.addTo
 import io.reactivex.rxjava3.schedulers.Schedulers.io

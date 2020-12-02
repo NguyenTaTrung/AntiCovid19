@@ -16,6 +16,7 @@ import androidx.fragment.app.DialogFragment
 import com.example.googlemap.BuildConfig
 import com.example.googlemap.R
 import com.example.googlemap.databinding.FragmentPermissionRequestBinding
+import com.example.googlemap.ui.main.BottomNavigationListener
 import com.example.googlemap.utils.hasPermission
 import com.example.googlemap.utils.requestPermissionWithRationale
 import com.google.android.material.snackbar.Snackbar
@@ -25,6 +26,7 @@ class BackgroundPermissionDialog : DialogFragment() {
 
     private var parentListener: BackgroundDialogCallbacks? = null
     private var permissionRequestType: PermissionRequestType? = null
+    private var bottomNavigationListener: BottomNavigationListener? = null
     private lateinit var binding: FragmentPermissionRequestBinding
 
     private val fineLocationRationalSnackBar by lazy {
@@ -62,6 +64,7 @@ class BackgroundPermissionDialog : DialogFragment() {
         } else {
             throw RuntimeException("$context must implement BackgroundDiaLogCallbacks")
         }
+        if (context is BottomNavigationListener) bottomNavigationListener = context
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -123,6 +126,7 @@ class BackgroundPermissionDialog : DialogFragment() {
         canPermissionRequestButton.setOnClickListener {
             this.dismiss()
             parentListener?.removeFragment()
+            bottomNavigationListener?.showBottomNav()
         }
     }
 
@@ -176,6 +180,7 @@ class BackgroundPermissionDialog : DialogFragment() {
     override fun onDetach() {
         super.onDetach()
         parentListener = null
+        bottomNavigationListener = null
     }
 
     private fun requestFineLocationPermission() {

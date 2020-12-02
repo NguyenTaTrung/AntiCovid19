@@ -10,6 +10,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.googlemap.broadcast.LocationUpdatesBroadcastReceiver
 import com.example.googlemap.data.model.CaseInformation
+import com.example.googlemap.data.resource.repository.InformationRepository
 import com.example.googlemap.utils.hasPermission
 import com.google.android.gms.location.LocationRequest
 import com.google.android.gms.location.LocationServices

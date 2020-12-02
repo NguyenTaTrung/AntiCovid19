@@ -14,6 +14,7 @@
     <string name="msg_search_fail">Không có kết quả!</string>
     <string name="msg_connection_fail">Yêu cầu kiểm tra lại kết nối</string>
     <string name="msg_no_data_available">Chưa có dữ liệu\u0020</string>
+    <string name="msg_notification_location_update">Cảnh báo có %d người nhiễm bệnh trong khu vực bạn sinh sống</string>
 
     <string name="radio_button_vietnamese">Việt nam</string>
     <string name="radio_button_worlds">Thế giới</string>
@@ -99,6 +100,7 @@
     <string name="title_address">Địa chỉ:</string>
     <string name="title_place">Địa điểm:</string>
     <string name="title_dialog_date">Chọn một khoảng thời gian</string>
+    <string name="title_notification_location_update">Cảnh báo</string>
 
     <string name="fine_location_permission_rationale">Cho phép truy cập vị trí là cần thiết.</string>
     <string name="fine_permission_denied_explanation">Quyền đã bị từ chối, nhưng chức năng này cần truy cập vị trí.</string>
@@ -115,11 +117,11 @@
     <string name="background_location_access_rationale_title_text">Cải thiện độ chính xác của vị trí!</string>
     <string name="background_location_access_rationale_details_text">Để có thể xác định chính xác khoảng cách gần nhất với các ca nhiễm xung quanh bạn, bảo đạm sự an toàn cho bạn và mọi người xung quanh</string>
 
-    <string name="request_updates">Request updates</string>
-    <string name="remove_updates">Remove updates</string>
-    <string name="unknown_location">Unknown location</string>
+    <string name="request_updates">Yêu cầu cập nhật</string>
+    <string name="remove_updates">Xóa các bản cập nhật</string>
+    <string name="unknown_location">Vị trí không xác định</string>
 
-    <string name="batched_location_updates">Batched location updates</string>
-    <string name="emptyLocationDatabaseMessage">To start receiving location updates, please click the button below!</string>
+    <string name="batched_location_updates">Cập nhật vị trí hàng loạt</string>
+    <string name="emptyLocationDatabaseMessage">Để bắt đầu nhận thông tin cập nhật về vị trí, vui lòng nhấp vào nút bên dưới!</string>
 
 </resources>

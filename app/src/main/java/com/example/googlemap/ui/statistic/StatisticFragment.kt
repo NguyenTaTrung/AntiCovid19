@@ -1,5 +1,6 @@
 package com.example.googlemap.ui.statistic
 
+import android.content.Context
 import android.view.View
 import android.widget.RadioGroup
 import androidx.lifecycle.Observer
@@ -9,8 +10,10 @@ import com.example.googlemap.R
 import com.example.googlemap.base.BaseFragment
 import com.example.googlemap.databinding.FragmentStatisticsBinding
 import com.example.googlemap.ui.dialog.LoadingDialog
+import com.example.googlemap.ui.main.BottomNavigationListener
 import com.example.googlemap.utils.TimeConst.INPUT_TIME_FORMAT
 import com.example.googlemap.utils.TimeConst.PATTERN_TIME_GROUP_CHART
+import com.example.googlemap.utils.alertDialog
 import com.example.googlemap.utils.showToast
 import com.github.mikephil.charting.components.XAxis
 import com.github.mikephil.charting.data.*
@@ -27,16 +30,22 @@ class StatisticFragment :
     BaseFragment<FragmentStatisticsBinding>(),
     RadioGroup.OnCheckedChangeListener
 {
-
     private val viewModel by viewModel<StatisticViewModel>()
     private val navArgs by navArgs<StatisticFragmentArgs>()
     private var dialogLoading: LoadingDialog? = null
+    private var bottomNavigationListener: BottomNavigationListener? = null
+    private var isAllowNotification = false
 
     override val layoutResources: Int
         get() = R.layout.fragment_statistics
 
     override val statusBarColor: Int
         get() = R.color.colorPrimary
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        if (context is BottomNavigationListener) bottomNavigationListener = context
+    }
 
     override fun initData() {
         context?.let { dialogLoading = LoadingDialog(it) }
@@ -45,6 +54,7 @@ class StatisticFragment :
             textViewChart.visibility = View.GONE
             cardViewChart.visibility = View.GONE
             buttonSelectTime.visibility = View.GONE
+            imageViewNotification.visibility = View.GONE
             binding.isVisibleRadioButton = false
             binding.isVietNam = true
             binding.country = it
@@ -59,8 +69,25 @@ class StatisticFragment :
         }
         textViewExtend.setOnClickListener {
             findNavController().navigate(StatisticFragmentDirections.actionToMapFragment())
+            bottomNavigationListener?.hideBottomNav()
         }
         buttonSelectTime.setOnClickListener { openDatePickerDialog() }
+        imageViewNotification.setOnClickListener { allowDisplayNotification() }
+    }
+
+    private fun allowDisplayNotification() {
+        if (isAllowNotification) {
+            context?.alertDialog(
+                getString(R.string.text_notice),
+                getString(R.string.text_notice_content)
+            ) { _, _ ->
+                viewModel.updateNotification(false)
+                viewModel.cancelAlarm()
+            }?.show()
+        } else {
+            viewModel.startAlarm()
+            viewModel.updateNotification(true)
+        }
     }
 
     override fun onCheckedChanged(group: RadioGroup?, id: Int) {
@@ -68,6 +95,11 @@ class StatisticFragment :
             R.id.radioButtonVietnamese -> viewModel.getVietNamInformation()
             R.id.radioButtonWorld -> viewModel.getGlobalInformation()
         }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        bottomNavigationListener = null
     }
 
     private fun observeData() = with(viewModel) {
@@ -90,6 +122,15 @@ class StatisticFragment :
 
         message.observe(viewLifecycleOwner, Observer {
             binding.date = it
+        })
+
+        isAllowNotification.observe(viewLifecycleOwner, Observer {
+            this@StatisticFragment.isAllowNotification = it
+            if (it) {
+                binding.on = R.drawable.ic_notifications_white_24dp
+            } else {
+                binding.on = R.drawable.ic_notifications_off_white_24dp
+            }
         })
 
         countryStatus.observe(viewLifecycleOwner, Observer {
@@ -146,9 +187,9 @@ class StatisticFragment :
 
     private fun addGroupBarChart(
         xVal: List<String>,
+        infectedData: List<Int>,
         deathData: List<Int>,
-        recoveredData: List<Int>,
-        infectedData: List<Int>
+        recoveredData: List<Int>
     ) {
         val groupSpace = 0.25f
         val barSpace = 0.05f
