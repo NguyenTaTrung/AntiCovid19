@@ -4,6 +4,7 @@
 
     <string name="button_call_now">Gọi Ngay</string>
     <string name="button_send_sms">Gửi SMS</string>
+    <string name="button_search">Tìm kiếm</string>
 
     <string name="error_parse_json">Kiểu không hỗ trợ</string>
     <string name="error_get_data_api">Tham số đầu truyền vào không được null</string>
@@ -15,6 +16,10 @@
     <string name="msg_connection_fail">Yêu cầu kiểm tra lại kết nối</string>
     <string name="msg_no_data_available">Chưa có dữ liệu\u0020</string>
     <string name="msg_notification_location_update">Cảnh báo có %d người nhiễm bệnh trong khu vực bạn sinh sống</string>
+    <string name="msg_gps_question">Có vẻ như GPS của bạn đã bị tắt, bạn có muốn bật nó lên để sử dụng tính năng này không?</string>
+    <string name="msg_gps_result">Bạn chưa bật GPS!</string>
+    <string name="msg_no_select_status">Bạn chưa chọn trạng thái!</string>
+    <string name="msg_no_latest_news">Chưa có tin tức mới nhất!</string>
 
     <string name="radio_button_vietnamese">Việt nam</string>
     <string name="radio_button_worlds">Thế giới</string>
@@ -57,7 +62,7 @@
     <string name="text_description_question">Nếu bạn cảm thấy bị bệnh với bất kỳ triệu chứng covid-19 nào, vui lòng gọi hoặc nhắn tin cho chúng tôi ngay lập tức để được giúp đỡ.</string>
     <string name="text_content_rag">Khi bạn ho hoặc hắt hơi, hãy che mũi và miệng bằng khăn giấy hoặc bằng khuỷu tay.</string>
     <string name="text_statistic_char_by_week">Biểu đồ thống kê theo tuần</string>
-    <string name="text_area_warning">Khu vực nguy hiểm</string>
+    <string name="text_area_warning">Khu vực nguy hiểm tại Việt Nam</string>
     <string name="text_char_new_infected">Số ca nhiễm mới</string>
     <string name="text_char_new_death">Số ca tử vong mới</string>
     <string name="text_char_new_recovered">Số ca hồi phục mới</string>
@@ -72,6 +77,16 @@
     <string name="text_from_date">"Từ:\u0020"</string>
     <string name="text_to_date">\n\n"Đến:\u0020"</string>
     <string name="text_date_time">Ngày:\u0020</string>
+    <string name="text_treatments">Phương pháp điều trị</string>
+    <string name="text_treatments_content">
+        - Cho đến nay, vẫn chưa có vắc-xin hoặc thuốc đặc hiệu cho COVID-19. Các nhà khoa học vẫn đang nghiên cứu phương pháp điều trị và sẽ kiểm chứng thông qua thử nghiệm lâm sàng.
+        \n\n- Nếu bạn có triệu chứng nhẹ và không có biểu hiện bệnh nào khác, hãy tự cách ly và liên hệ với cơ sở y tế hoặc đường dây hỗ trợ thông tin về COVID-19 để được tư vấn.
+    </string>
+    <string name="text_prevention_content">Bảo vệ bản thân và mọi người xung quanh bằng cách tìm hiểu thông tin và thực hiện các biện pháp phòng ngừa thích hợp.</string>
+    <string name="text_symptoms_content">COVID-19 tác động đến mỗi người theo những cách khác nhau. Hầu hết những người nhiễm vi-rút sẽ có triệu chứng bệnh từ nhẹ đến trung bình và có thể hồi phục mà không cần nhập viện.</string>
+    <string name="text_name">Tên</string>
+    <string name="text_detecting_location">Nơi phát hiện</string>
+    <string name="text_being_treated">Đang điều trị</string>
 
     <string name="title_activity_main">MainActivity</string>
     <string name="title_activity_maps">Map</string>
@@ -101,6 +116,12 @@
     <string name="title_place">Địa điểm:</string>
     <string name="title_dialog_date">Chọn một khoảng thời gian</string>
     <string name="title_notification_location_update">Cảnh báo</string>
+    <string name="title_case_information">Danh sách ca nhiễm</string>
+    <string name="title_summary">Tóm tắt</string>
+    <string name="title_status">Trạng thái</string>
+    <string name="title_select_place">Chọn địa điểm:</string>
+    <string name="title_select_fields">Chọn trạng thái:</string>
+    <string name="title_search_filter">Bộ lọc tìm kiếm</string>
 
     <string name="fine_location_permission_rationale">Cho phép truy cập vị trí là cần thiết.</string>
     <string name="fine_permission_denied_explanation">Quyền đã bị từ chối, nhưng chức năng này cần truy cập vị trí.</string>
@@ -123,5 +144,7 @@
 
     <string name="batched_location_updates">Cập nhật vị trí hàng loạt</string>
     <string name="emptyLocationDatabaseMessage">Để bắt đầu nhận thông tin cập nhật về vị trí, vui lòng nhấp vào nút bên dưới!</string>
+
+    <string name="sms_content">Người nhận: Phó Trưởng ban biên tập thường trực TS.BS. Hà Anh Đức, Chánh Văn phòng Bộ Y tế.\n\nNội dung:</string>
 
 </resources>

@@ -1,6 +1,7 @@
 package com.example.googlemap.data.model
 
 import android.os.Parcelable
+import androidx.recyclerview.widget.DiffUtil
 import com.google.gson.annotations.SerializedName
 import kotlinx.android.parcel.Parcelize
 import org.json.JSONObject
@@ -71,5 +72,21 @@ data class CaseInformation(
         private const val LONGITUDE = "lon"
         private const val STATUS = "status"
         private const val TIME = "time"
+
+        val diffUtil = object : DiffUtil.ItemCallback<CaseInformation>() {
+            override fun areItemsTheSame(
+                oldItem: CaseInformation,
+                newItem: CaseInformation
+            ): Boolean {
+                return oldItem.id == newItem.id
+            }
+
+            override fun areContentsTheSame(
+                oldItem: CaseInformation,
+                newItem: CaseInformation
+            ): Boolean {
+                return oldItem == newItem
+            }
+        }
     }
 }

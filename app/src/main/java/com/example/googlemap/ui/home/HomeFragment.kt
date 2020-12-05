@@ -34,6 +34,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(), RadioGroup.OnCheckedCh
     override fun initAction() {
         radioGroupChangeLanguage.setOnCheckedChangeListener(this)
         buttonHotline.setOnClickListener { callPhone() }
+        buttonMessage.setOnClickListener { sendSMS() }
     }
 
     override fun onCheckedChanged(group: RadioGroup?, checkedId: Int) {
@@ -91,7 +92,17 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(), RadioGroup.OnCheckedCh
         startActivity(Intent(Intent.ACTION_DIAL, Uri.parse(HOT_LINE)))
     }
 
+    private fun sendSMS() {
+        val intentSMS = Intent(Intent.ACTION_VIEW).apply {
+            data = Uri.parse(SMS)
+            putExtra(EXTRA_SMS_CONTENT, getString(R.string.sms_content))
+        }
+        startActivity(intentSMS)
+    }
+
     companion object {
         private const val HOT_LINE = "tel: 19009095"
+        private const val SMS = "sms: 02462732273"
+        private const val EXTRA_SMS_CONTENT = "sms_body"
     }
 }

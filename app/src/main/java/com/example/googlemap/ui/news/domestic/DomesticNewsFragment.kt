@@ -34,6 +34,7 @@ class DomesticNewsFragment : BaseFragment<FragmentDomesticNewsBinding>() {
         })
 
         viewModel.news.observe(viewLifecycleOwner, Observer {
+            binding.size = it.size
             adapter.submitList(it)
         })
 

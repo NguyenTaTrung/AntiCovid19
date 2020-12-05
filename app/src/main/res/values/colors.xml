@@ -9,4 +9,5 @@
     <color name="colorGreen">#23B305</color>
     <color name="colorBlackLight">#80000000</color>
     <color name="colorGreyLight">#F3F3F3</color>
+    <color name="colorBlurBlack">#D9000000</color>
 </resources>

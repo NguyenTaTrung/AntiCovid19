@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
+
         <variable
             name="caseInformation"
             type="com.example.googlemap.data.model.CaseInformation" />
@@ -26,17 +27,17 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-<!--        <ImageButton-->
-<!--            android:id="@+id/imageButtonRefresh"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_margin="@dimen/dp_10"-->
-<!--            android:background="@android:color/white"-->
-<!--            android:contentDescription="@null"-->
-<!--            android:padding="@dimen/dp_8"-->
-<!--            app:layout_constraintEnd_toEndOf="parent"-->
-<!--            app:layout_constraintTop_toTopOf="parent"-->
-<!--            app:srcCompat="@drawable/ic_baseline_refresh_24" />-->
+        <!--        <ImageButton-->
+        <!--            android:id="@+id/imageButtonRefresh"-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_margin="@dimen/dp_10"-->
+        <!--            android:background="@android:color/white"-->
+        <!--            android:contentDescription="@null"-->
+        <!--            android:padding="@dimen/dp_8"-->
+        <!--            app:layout_constraintEnd_toEndOf="parent"-->
+        <!--            app:layout_constraintTop_toTopOf="parent"-->
+        <!--            app:srcCompat="@drawable/ic_baseline_refresh_24" />-->
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cardInformation"
@@ -52,6 +53,29 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/textViewSummary"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/dp_10"
+                    android:text="@string/title_summary"
+                    android:textColor="@android:color/black"
+                    android:textSize="@dimen/sp_20"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/textViewSeeDetail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/text_see_detail"
+                    android:textColor="@color/colorAccent"
+                    app:drawableEndCompat="@drawable/ic_navigate_next_green_24dp"
+                    app:layout_constraintEnd_toEndOf="@id/textViewCode"
+                    app:layout_constraintTop_toTopOf="@+id/textViewSummary" />
 
                 <TextView
                     android:id="@+id/textViewDetectingLocation"
@@ -92,22 +116,21 @@
                     android:id="@+id/textViewCode"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/dp_10"
+                    android:layout_marginTop="@dimen/dp_20"
                     android:layout_marginEnd="@dimen/dp_10"
                     android:text="@{caseInformation.code}"
                     app:layout_constraintBottom_toTopOf="@+id/textViewAge"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="@id/textViewDetectingLocation"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toBottomOf="@id/textViewSummary" />
 
                 <TextView
                     android:id="@+id/textViewTitleCode"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/dp_10"
                     android:text="@string/title_name"
                     android:textColor="@android:color/black"
-                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintStart_toStartOf="@id/textViewSummary"
                     app:layout_constraintTop_toTopOf="@id/textViewCode" />
 
                 <TextView

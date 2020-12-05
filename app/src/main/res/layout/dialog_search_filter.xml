@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/textViewTitleSearch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/dp_20"
+            android:text="@string/title_search_filter"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/sp_25"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textViewTitleFields"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_20"
+            android:text="@string/title_select_fields"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/sp_18"
+            app:layout_constraintStart_toStartOf="@id/textViewTitleSearch"
+            app:layout_constraintTop_toBottomOf="@id/textViewTitleSearch" />
+
+        <CheckBox
+            android:id="@+id/checkBoxTreated"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/background_border_grey"
+            android:button="@null"
+            android:checked="true"
+            android:drawableTop="?android:attr/listChoiceIndicatorMultiple"
+            android:gravity="center"
+            android:padding="@dimen/dp_10"
+            android:text="@string/text_being_treated"
+            app:layout_constraintEnd_toStartOf="@+id/checkBoxDead"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textViewTitleFields" />
+
+        <CheckBox
+            android:id="@+id/checkBoxDead"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/background_border_grey"
+            android:button="@null"
+            android:checked="true"
+            android:drawableTop="?android:attr/listChoiceIndicatorMultiple"
+            android:gravity="center"
+            android:padding="@dimen/dp_10"
+            android:text="@string/text_death"
+            app:layout_constraintBottom_toBottomOf="@+id/checkBoxTreated"
+            app:layout_constraintEnd_toStartOf="@+id/checkBoxRecovered"
+            app:layout_constraintStart_toEndOf="@+id/checkBoxTreated"
+            app:layout_constraintTop_toTopOf="@+id/checkBoxTreated" />
+
+        <CheckBox
+            android:id="@+id/checkBoxRecovered"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/background_border_grey"
+            android:button="@null"
+            android:checked="true"
+            android:drawableTop="?android:attr/listChoiceIndicatorMultiple"
+            android:gravity="center"
+            android:padding="@dimen/dp_10"
+            android:text="@string/text_recovered"
+            app:layout_constraintBottom_toBottomOf="@+id/checkBoxDead"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/checkBoxDead"
+            app:layout_constraintTop_toTopOf="@+id/checkBoxDead" />
+
+        <TextView
+            android:id="@+id/textViewTitlePlace"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_20"
+            android:text="@string/title_select_place"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/sp_18"
+            app:layout_constraintStart_toStartOf="@id/textViewTitleSearch"
+            app:layout_constraintTop_toBottomOf="@+id/checkBoxTreated" />
+
+        <androidx.appcompat.widget.AppCompatSpinner
+            android:id="@+id/spinnerPlace"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_10"
+            android:layout_marginEnd="@dimen/dp_20"
+            android:background="@drawable/background_spinner"
+            android:padding="@dimen/dp_10"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@id/textViewTitleSearch"
+            app:layout_constraintTop_toBottomOf="@+id/textViewTitlePlace" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/materialButtonClose"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp_20"
+            android:layout_marginTop="@dimen/dp_20"
+            android:layout_marginEnd="@dimen/dp_10"
+            android:layout_marginBottom="@dimen/dp_20"
+            android:backgroundTint="@android:color/white"
+            android:text="@string/text_diagree"
+            android:textColor="@android:color/black"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/materialButtonAccept"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/spinnerPlace" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/materialButtonAccept"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp_10"
+            android:layout_marginEnd="@dimen/dp_20"
+            android:text="@string/button_search"
+            app:layout_constraintBottom_toBottomOf="@+id/materialButtonClose"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/materialButtonClose"
+            app:layout_constraintTop_toTopOf="@+id/materialButtonClose" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

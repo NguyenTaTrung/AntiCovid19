@@ -174,6 +174,7 @@ class DetailCountryFragment :
         findNavController().navigate(
             DetailCountryFragmentDirections.actionToNavigationStatistic(country)
         )
+        hideKeyBroad()
     }
 
     companion object {
