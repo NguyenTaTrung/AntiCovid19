@@ -30,6 +30,10 @@
             android:id="@+id/actionToMapFragment"
             app:destination="@id/mapFragment" />
 
+        <action
+            android:id="@+id/actionToCaseInformationFragment"
+            app:destination="@id/caseInformationFragment" />
+
         <argument
             android:name="bundleCountry"
             app:argType="com.example.googlemap.data.model.Country"
@@ -60,6 +64,17 @@
         android:label="MapFragment"
         tools:layout="@layout/fragment_map"/>
 
+    <fragment
+        android:id="@+id/caseInformationFragment"
+        android:name="com.example.googlemap.ui.case.CaseInformationFragment"
+        android:label="CaseInformationFragment"
+        tools:layout="@layout/fragment_case_information" >
+
+        <action
+            android:id="@+id/actionToSearchFilterDialog"
+            app:destination="@id/searchFilterDialog" />
+    </fragment>
+
     <dialog
         android:id="@+id/symptomDialog"
         android:name="com.example.googlemap.ui.dialog.SymptomDialog"
@@ -70,4 +85,10 @@
             android:name="bundleSymptom"
             app:argType="com.example.googlemap.data.model.Symptom" />
     </dialog>
+
+    <dialog
+        android:id="@+id/searchFilterDialog"
+        android:name="com.example.googlemap.ui.dialog.filter.SearchFilterDialog"
+        android:label="SearchFilterDialog"
+        tools:layout="@layout/dialog_search_filter" />
 </navigation>

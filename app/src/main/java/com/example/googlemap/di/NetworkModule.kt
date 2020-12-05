@@ -10,7 +10,7 @@ import retrofit2.converter.simplexml.SimpleXmlConverterFactory
 val networkModule = module {
     single(named("apiService")) {
         Retrofit.Builder()
-            .baseUrl("http://192.168.11.8/MyServer/")
+            .baseUrl("http://192.168.11.4/MyServer/")
             .addConverterFactory(GsonConverterFactory.create())
             .addCallAdapterFactory(RxJava3CallAdapterFactory.create())
             .build()

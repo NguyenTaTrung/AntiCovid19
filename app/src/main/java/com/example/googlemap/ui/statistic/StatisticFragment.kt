@@ -1,6 +1,9 @@
 package com.example.googlemap.ui.statistic
 
 import android.content.Context
+import android.content.Intent
+import android.location.LocationManager
+import android.provider.Settings
 import android.view.View
 import android.widget.RadioGroup
 import androidx.lifecycle.Observer
@@ -28,8 +31,7 @@ import java.util.*
 
 class StatisticFragment :
     BaseFragment<FragmentStatisticsBinding>(),
-    RadioGroup.OnCheckedChangeListener
-{
+    RadioGroup.OnCheckedChangeListener {
     private val viewModel by viewModel<StatisticViewModel>()
     private val navArgs by navArgs<StatisticFragmentArgs>()
     private var dialogLoading: LoadingDialog? = null
@@ -50,7 +52,8 @@ class StatisticFragment :
     override fun initData() {
         context?.let { dialogLoading = LoadingDialog(it) }
         navArgs.bundleCountry?.let {
-            guidelineTop.setGuidelinePercent(0.24f)
+            guidelineTop.setGuidelinePercent(0.16f)
+            textViewSeeDetail.visibility = View.GONE
             textViewChart.visibility = View.GONE
             cardViewChart.visibility = View.GONE
             buttonSelectTime.visibility = View.GONE
@@ -65,12 +68,13 @@ class StatisticFragment :
     override fun initAction() {
         radioGroupToggleInformation.setOnCheckedChangeListener(this)
         textViewSeeDetail.setOnClickListener {
-            findNavController().navigate(StatisticFragmentDirections.actionToDetailCountryFragment())
+            if (binding.isVietNam == true) {
+                findNavController().navigate(StatisticFragmentDirections.actionToCaseInformationFragment())
+            } else {
+                findNavController().navigate(StatisticFragmentDirections.actionToDetailCountryFragment())
+            }
         }
-        textViewExtend.setOnClickListener {
-            findNavController().navigate(StatisticFragmentDirections.actionToMapFragment())
-            bottomNavigationListener?.hideBottomNav()
-        }
+        textViewExtend.setOnClickListener { checkLocationStatus() }
         buttonSelectTime.setOnClickListener { openDatePickerDialog() }
         imageViewNotification.setOnClickListener { allowDisplayNotification() }
     }
@@ -94,6 +98,19 @@ class StatisticFragment :
         when (id) {
             R.id.radioButtonVietnamese -> viewModel.getVietNamInformation()
             R.id.radioButtonWorld -> viewModel.getGlobalInformation()
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == 50) {
+            val manager = requireContext().getSystemService(Context.LOCATION_SERVICE) as LocationManager
+            if (!manager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
+                context?.showToast(getString(R.string.msg_gps_result))
+                return
+            }
+            findNavController().navigate(StatisticFragmentDirections.actionToMapFragment())
+            bottomNavigationListener?.hideBottomNav()
         }
     }
 
@@ -156,6 +173,21 @@ class StatisticFragment :
         error.observe(viewLifecycleOwner, Observer {
             context?.showToast(it)
         })
+    }
+
+    private fun checkLocationStatus() {
+        val manager = requireContext().getSystemService(Context.LOCATION_SERVICE) as LocationManager
+        if (!manager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
+            context?.alertDialog(
+                "",
+                getString(R.string.msg_gps_question)
+            ) { _, _ ->
+                startActivityForResult(Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS), 50)
+            }?.show()
+            return
+        }
+        findNavController().navigate(StatisticFragmentDirections.actionToMapFragment())
+        bottomNavigationListener?.hideBottomNav()
     }
 
     private fun openDatePickerDialog() {

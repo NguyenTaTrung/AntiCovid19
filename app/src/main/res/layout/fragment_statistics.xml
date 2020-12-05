@@ -45,7 +45,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                app:layout_constraintGuide_percent="0.15" />
+                app:layout_constraintGuide_percent="0.12" />
 
             <ImageView
                 android:id="@+id/imageViewNotification"
@@ -203,7 +203,6 @@
                 android:gravity="center"
                 android:text="@string/text_see_detail"
                 android:textColor="@color/colorAccent"
-                android:visibility="@{isVietNam == true ? View.INVISIBLE : View.VISIBLE}"
                 app:drawableEndCompat="@drawable/ic_navigate_next_green_24dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/cardGroupRadio" />
@@ -364,12 +363,14 @@
 
             <TextView
                 android:id="@+id/textViewWarning"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/dp_20"
+                android:layout_marginEnd="@dimen/dp_20"
                 android:text="@string/text_area_warning"
                 android:textColor="@android:color/black"
                 android:textSize="@dimen/sp_18"
+                app:layout_constraintEnd_toStartOf="@id/textViewExtend"
                 app:layout_constraintStart_toStartOf="@+id/textViewCaseUpdate"
                 app:layout_constraintTop_toBottomOf="@+id/cardViewStatistics" />
 
@@ -395,11 +396,12 @@
                 app:layout_constraintTop_toBottomOf="@id/textViewWarning">
 
                 <ImageView
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/img_map"
-                    android:contentDescription="@null"
-                    android:scaleType="fitXY" />
+                    android:layout_gravity="center"
+                    android:adjustViewBounds="true"
+                    android:background="@drawable/img_covid_case_in_vietnam"
+                    android:contentDescription="@null" />
 
             </androidx.cardview.widget.CardView>
 

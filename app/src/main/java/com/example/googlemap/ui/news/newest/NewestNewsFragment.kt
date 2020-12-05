@@ -35,6 +35,7 @@ class NewestNewsFragment : BaseFragment<FragmentNewestNewsBinding>() {
             if (it) dialogLoading?.show() else dialogLoading?.dismiss()
         })
         viewModel.news.observe(viewLifecycleOwner, Observer {
+            binding.size = it.size
             adapter.submitList(it)
         })
 

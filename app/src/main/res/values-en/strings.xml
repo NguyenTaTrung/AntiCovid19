@@ -3,6 +3,7 @@
 
     <string name="button_call_now">Call Now</string>
     <string name="button_send_sms">Send SMS</string>
+    <string name="button_search">Search</string>
 
     <string name="error_parse_json">Type not supported</string>
     <string name="error_get_data_api">First param should not be null, or you forgot passing one</string>
@@ -14,6 +15,10 @@
     <string name="msg_connection_fail">Please check your internet connection!</string>
     <string name="msg_no_data_available">No data available\u0020</string>
     <string name="msg_notification_location_update">Alerts %d infected people in the area you live</string>
+    <string name="msg_gps_question">Your GPS seems to be disabled, do you want to turn it on to use this feature?</string>
+    <string name="msg_gps_result">GPS is not turned on!</string>
+    <string name="msg_no_select_status">You have not selected a status!</string>
+    <string name="msg_no_latest_news">No latest news!</string>
 
     <string name="radio_button_vietnamese">Vietnamese</string>
     <string name="radio_button_worlds">Worlds</string>
@@ -57,7 +62,7 @@
     <string name="text_description_question">If you feel sick with any of covid-19 symptoms please call or SMS us immediately for help.</string>
     <string name="text_content_rag">When you cough or sneeze, cover your nose and mouth with a tissue or with your elbow.</string>
     <string name="text_statistic_char_by_week">Statistical chart by week</string>
-    <string name="text_area_warning">Dangerous area</string>
+    <string name="text_area_warning">Dangerous area in VietNam</string>
     <string name="text_char_new_infected">Number of new infections</string>
     <string name="text_char_new_death">Number of new deaths</string>
     <string name="text_char_new_recovered">Number of new recovery</string>
@@ -72,6 +77,16 @@
     <string name="text_from_date">"From:\u0020"</string>
     <string name="text_to_date">\n\n"To:\u0020"</string>
     <string name="text_date_time">Date:\u0020</string>
+    <string name="text_treatments">Treatments</string>
+    <string name="text_treatments_content">
+        - To date, there is no specific vaccine or drug for COVID-19. Scientists are still working on a treatment and will verify it through clinical trials.
+        \n\n- If you have mild symptoms and no other symptoms, quarantine yourself and contact your medical facility or the COVID-19 information helpline for advice.
+    </string>
+    <string name="text_prevention_content">Protect yourself and those around you by getting information and taking appropriate precautions.</string>
+    <string name="text_symptoms_content">COVID-19 affects people in different ways. Most people infected with the virus will have mild to moderate symptoms and will recover without hospitalization. </string>
+    <string name="text_name">Name</string>
+    <string name="text_detecting_location">Detecting Location</string>
+    <string name="text_being_treated">Being treated</string>
 
     <string name="title_activity_maps">Map</string>
     <string name="title_statistics">Statistics</string>
@@ -100,6 +115,12 @@
     <string name="title_place">Place:</string>
     <string name="title_dialog_date">Select a date range</string>
     <string name="title_notification_location_update">Warning</string>
+    <string name="title_case_information">List of cases</string>
+    <string name="title_summary">Summary</string>
+    <string name="title_status">Status</string>
+    <string name="title_select_place">Select place:</string>
+    <string name="title_select_fields">Select status:</string>
+    <string name="title_search_filter">Search filter</string>
 
     <string name="fine_location_permission_rationale">The fine location permission is needed.</string>
     <string name="fine_permission_denied_explanation">Fine location permission was denied, but is needed.</string>
@@ -122,5 +143,7 @@
 
     <string name="batched_location_updates">Batched location updates</string>
     <string name="emptyLocationDatabaseMessage">To start receiving location updates, please click the button below!</string>
+
+    <string name="sms_content">Recipients: Deputy Head of Editorial Department, TS.BS. Ha Anh Duc, Chief of Office of the Ministry of Health.\n\nContent:</string>
 
 </resources>

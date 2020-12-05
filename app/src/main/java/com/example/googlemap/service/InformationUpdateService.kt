@@ -11,8 +11,10 @@ import com.example.googlemap.data.resource.repository.InformationRepository
 import com.example.googlemap.ui.main.MainActivity
 import com.example.googlemap.utils.NotificationUtils
 import com.example.googlemap.utils.showToast
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.functions.BiFunction
+import io.reactivex.rxjava3.schedulers.Schedulers.io
 import org.koin.android.ext.android.inject
 
 class InformationUpdateService : JobIntentService() {
@@ -47,9 +49,11 @@ class InformationUpdateService : JobIntentService() {
                 newInformation
             }
         )
+            .subscribeOn(io())
             .flatMapCompletable {
                 it?.let { repo.updateInformation(it) }
             }
+            .observeOn(AndroidSchedulers.mainThread())
             .subscribe({}, {
                 showToast(it.message.toString())
             })
