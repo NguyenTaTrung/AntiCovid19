@@ -62,7 +62,12 @@
         android:id="@+id/mapFragment"
         android:name="com.example.googlemap.ui.map.MapFragment"
         android:label="MapFragment"
-        tools:layout="@layout/fragment_map"/>
+        tools:layout="@layout/fragment_map">
+
+        <action
+            android:id="@+id/actionToDetailCaseInformationFragment"
+            app:destination="@id/detailCaseInformationFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/caseInformationFragment"
@@ -73,6 +78,21 @@
         <action
             android:id="@+id/actionToSearchFilterDialog"
             app:destination="@id/searchFilterDialog" />
+
+        <action
+            android:id="@+id/actionToDetailCaseInformationFragment"
+            app:destination="@id/detailCaseInformationFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/detailCaseInformationFragment"
+        android:name="com.example.googlemap.ui.information.DetailCaseInformationFragment"
+        android:label="DetailCaseInformationFragment"
+        tools:layout="@layout/fragment_detail_case_information">
+
+        <argument android:name="bundleIdCase"
+            app:argType="integer"
+            android:defaultValue="0" />
     </fragment>
 
     <dialog

@@ -28,6 +28,8 @@ object NotificationUtils {
             )
             .setContentTitle(title)
             .setContentText(msg)
+            .setStyle(NotificationCompat.BigTextStyle().bigText(msg))
+            .setPriority(NotificationCompat.PRIORITY_DEFAULT)
             .setContentIntent(pendingIntent)
 
         builder.setAutoCancel(true)

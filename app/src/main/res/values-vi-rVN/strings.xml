@@ -15,7 +15,7 @@
     <string name="msg_search_fail">Không có kết quả!</string>
     <string name="msg_connection_fail">Yêu cầu kiểm tra lại kết nối</string>
     <string name="msg_no_data_available">Chưa có dữ liệu\u0020</string>
-    <string name="msg_notification_location_update">Cảnh báo có %d người nhiễm bệnh trong khu vực bạn sinh sống</string>
+    <string name="msg_notification_location_update">Chú ý, hiện có %d người nhiễm bệnh trong khu vực gần bạn!</string>
     <string name="msg_gps_question">Có vẻ như GPS của bạn đã bị tắt, bạn có muốn bật nó lên để sử dụng tính năng này không?</string>
     <string name="msg_gps_result">Bạn chưa bật GPS!</string>
     <string name="msg_no_select_status">Bạn chưa chọn trạng thái!</string>
@@ -146,5 +146,11 @@
     <string name="emptyLocationDatabaseMessage">Để bắt đầu nhận thông tin cập nhật về vị trí, vui lòng nhấp vào nút bên dưới!</string>
 
     <string name="sms_content">Người nhận: Phó Trưởng ban biên tập thường trực TS.BS. Hà Anh Đức, Chánh Văn phòng Bộ Y tế.\n\nNội dung:</string>
+    <string name="title_detail_case_information">Thông tin chi tiết ca nhiễm</string>
+    <string name="title_sex">Giới tính:</string>
+    <string name="text_status">Trạng thái:</string>
+    <string name="title_place_point">Những nơi đã đến:</string>
+    <string name="title_description">Chi tiết:</string>
+    <string name="title_place_went_to">Địa điểm đã đi đến</string>
 
 </resources>

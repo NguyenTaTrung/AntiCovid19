@@ -20,7 +20,8 @@ interface InformationDataSource {
 
     interface Remote {
         fun getInformation(): Observable<List<CaseInformation>>
-        fun getDetailInformation(id: Int): Observable<List<DetailCase>>
+        fun getAllPlace(id: Int): Observable<List<Place>>
+        fun getDetailCase(id: Int): Observable<DetailCase>
         fun getSummaryData(): Observable<Summary>
         fun getCountryAllStatus(fromDate: String, toDate: String): Observable<List<CountryStatus>>
         fun getWorldNewsVNExpress(): Observable<Rss>

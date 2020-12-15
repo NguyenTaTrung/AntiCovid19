@@ -3,7 +3,6 @@ package com.example.googlemap.ui.binding
 import android.text.format.DateUtils
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
-import com.example.googlemap.utils.TimeConst.ID_TIMEZONE
 import com.example.googlemap.utils.TimeConst.INPUT_TIME_FORMAT
 import com.example.googlemap.utils.TimeConst.OUTPUT_TIME_FORMAT
 import com.example.googlemap.utils.TimeConst.TIME_NEWS_FORMAT
@@ -15,7 +14,6 @@ import java.util.*
 fun formatTime(textView: TextView, time: String?) {
     if (time != null) {
         val input = SimpleDateFormat(INPUT_TIME_FORMAT, Locale.getDefault())
-        input.timeZone = TimeZone.getTimeZone(ID_TIMEZONE)
 
         val output = SimpleDateFormat(OUTPUT_TIME_FORMAT, Locale.getDefault())
 

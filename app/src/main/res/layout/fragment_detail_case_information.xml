@@ -4,6 +4,9 @@
 
     <data>
 
+        <variable
+            name="caseInformation"
+            type="com.example.googlemap.data.model.CaseInformation" />
     </data>
 
     <androidx.core.widget.NestedScrollView
@@ -14,7 +17,308 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.3" />
 
+            <View
+                android:layout_width="@dimen/dp_0_1"
+                android:layout_height="0dp"
+                android:background="@android:color/darker_gray"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@id/guideline"
+                app:layout_constraintStart_toStartOf="@id/guideline"
+                app:layout_constraintTop_toBottomOf="@id/toolBarDetailCase" />
+
+            <com.google.android.material.appbar.MaterialToolbar
+                android:id="@+id/toolBarDetailCase"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="@color/colorPrimary"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:navigationIcon="@drawable/ic_baseline_arrow_white_24"
+                app:title="@string/title_detail_case_information"
+                app:titleTextColor="@android:color/white" />
+
+            <TextView
+                android:id="@+id/textViewCode"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/dp_20"
+                android:text="@{caseInformation.code}"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/sp_25"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/guideline"
+                app:layout_constraintTop_toBottomOf="@+id/toolBarDetailCase" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="@dimen/dp_0_1"
+                android:layout_marginTop="@dimen/dp_10"
+                android:background="@android:color/darker_gray"
+                app:layout_constraintEnd_toEndOf="@id/textViewCode"
+                app:layout_constraintStart_toStartOf="@id/textView11"
+                app:layout_constraintTop_toBottomOf="@id/textViewCode" />
+
+            <TextView
+                android:id="@+id/textViewSex"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_20"
+                android:text="@{caseInformation.sex}"
+                android:textSize="@dimen/sp_18"
+                app:layout_constraintEnd_toEndOf="@+id/textViewCode"
+                app:layout_constraintStart_toStartOf="@+id/textViewCode"
+                app:layout_constraintTop_toBottomOf="@+id/textViewCode" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="@dimen/dp_0_1"
+                android:layout_marginTop="@dimen/dp_10"
+                android:background="@android:color/darker_gray"
+                app:layout_constraintEnd_toEndOf="@id/textViewCode"
+                app:layout_constraintStart_toStartOf="@id/textView11"
+                app:layout_constraintTop_toBottomOf="@id/textViewSex" />
+
+            <TextView
+                android:id="@+id/textViewAge"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_20"
+                android:text="@{`` + caseInformation.age}"
+                android:textSize="@dimen/sp_18"
+                app:layout_constraintEnd_toEndOf="@+id/textViewSex"
+                app:layout_constraintStart_toStartOf="@+id/textViewSex"
+                app:layout_constraintTop_toBottomOf="@+id/textViewSex" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="@dimen/dp_0_1"
+                android:layout_marginTop="@dimen/dp_10"
+                android:background="@android:color/darker_gray"
+                app:layout_constraintEnd_toEndOf="@id/textViewCode"
+                app:layout_constraintStart_toStartOf="@id/textView11"
+                app:layout_constraintTop_toBottomOf="@id/textViewAge" />
+
+            <TextView
+                android:id="@+id/textViewAddress"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_20"
+                android:text="@{caseInformation.address}"
+                android:textSize="@dimen/sp_18"
+                app:layout_constraintEnd_toEndOf="@+id/textViewAge"
+                app:layout_constraintStart_toStartOf="@+id/textViewAge"
+                app:layout_constraintTop_toBottomOf="@+id/textViewAge" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="@dimen/dp_0_1"
+                android:layout_marginTop="@dimen/dp_10"
+                android:background="@android:color/darker_gray"
+                app:layout_constraintEnd_toEndOf="@id/textViewCode"
+                app:layout_constraintStart_toStartOf="@id/textView11"
+                app:layout_constraintTop_toBottomOf="@id/textViewAddress" />
+
+            <TextView
+                android:id="@+id/textViewDetectingLocation"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginTop="@dimen/dp_20"
+                android:text="@{caseInformation.detectingLocation}"
+                android:textSize="@dimen/sp_18"
+                app:layout_constraintBottom_toBottomOf="@+id/textView15"
+                app:layout_constraintEnd_toEndOf="@+id/textViewAddress"
+                app:layout_constraintStart_toStartOf="@+id/textViewAddress"
+                app:layout_constraintTop_toBottomOf="@+id/textViewAddress" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="@dimen/dp_0_1"
+                android:layout_marginTop="@dimen/dp_10"
+                android:background="@android:color/darker_gray"
+                app:layout_constraintEnd_toEndOf="@id/textViewCode"
+                app:layout_constraintStart_toStartOf="@id/textView11"
+                app:layout_constraintTop_toBottomOf="@id/textViewDetectingLocation" />
+
+            <TextView
+                android:id="@+id/textViewTime"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_20"
+                android:text="@{caseInformation.time}"
+                android:textSize="@dimen/sp_18"
+                app:layout_constraintEnd_toEndOf="@+id/textViewDetectingLocation"
+                app:layout_constraintStart_toStartOf="@+id/textViewDetectingLocation"
+                app:layout_constraintTop_toBottomOf="@+id/textViewDetectingLocation" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="@dimen/dp_0_1"
+                android:layout_marginTop="@dimen/dp_10"
+                android:background="@android:color/darker_gray"
+                app:layout_constraintEnd_toEndOf="@id/textViewCode"
+                app:layout_constraintStart_toStartOf="@id/textView11"
+                app:layout_constraintTop_toBottomOf="@id/textViewTime" />
+
+            <TextView
+                android:id="@+id/textViewStatus"
+                statusColor="@{caseInformation.status}"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@{caseInformation.status}"
+                android:textSize="@dimen/sp_18"
+                app:layout_constraintBottom_toBottomOf="@+id/textView17"
+                app:layout_constraintEnd_toEndOf="@+id/textViewTime"
+                app:layout_constraintStart_toStartOf="@+id/textViewTime"
+                app:layout_constraintTop_toTopOf="@+id/textView17" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="@dimen/dp_0_1"
+                android:layout_marginTop="@dimen/dp_10"
+                android:background="@android:color/darker_gray"
+                app:layout_constraintEnd_toEndOf="@id/textViewCode"
+                app:layout_constraintStart_toStartOf="@id/textView11"
+                app:layout_constraintTop_toBottomOf="@id/textView17" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerViewPlace"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_20"
+                android:orientation="vertical"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintEnd_toEndOf="@+id/textViewStatus"
+                app:layout_constraintStart_toStartOf="@+id/guideline"
+                app:layout_constraintTop_toBottomOf="@+id/textViewStatus" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="@dimen/dp_0_1"
+                android:background="@android:color/darker_gray"
+                app:layout_constraintBottom_toBottomOf="@id/recyclerViewPlace"
+                app:layout_constraintEnd_toEndOf="@id/guideline"
+                app:layout_constraintStart_toStartOf="@id/textView11" />
+
+            <TextView
+                android:id="@+id/textViewDescription"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_20"
+                android:text="@{caseInformation.description}"
+                android:textSize="@dimen/sp_18"
+                app:layout_constraintEnd_toEndOf="@+id/recyclerViewPlace"
+                app:layout_constraintStart_toStartOf="@+id/textViewStatus"
+                app:layout_constraintTop_toBottomOf="@+id/recyclerViewPlace" />
+
+            <TextView
+                android:id="@+id/textView11"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:text="@string/title_name"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/sp_18"
+                app:layout_constraintEnd_toStartOf="@+id/guideline"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/textViewCode" />
+
+            <TextView
+                android:id="@+id/textView12"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/title_sex"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/sp_18"
+                app:layout_constraintEnd_toStartOf="@+id/guideline"
+                app:layout_constraintStart_toStartOf="@+id/textView11"
+                app:layout_constraintTop_toTopOf="@+id/textViewSex" />
+
+            <TextView
+                android:id="@+id/textView13"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/title_age"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/sp_18"
+                app:layout_constraintEnd_toStartOf="@+id/guideline"
+                app:layout_constraintStart_toStartOf="@+id/textView12"
+                app:layout_constraintTop_toTopOf="@+id/textViewAge" />
+
+            <TextView
+                android:id="@+id/textView14"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/title_address"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/sp_18"
+                app:layout_constraintEnd_toStartOf="@+id/guideline"
+                app:layout_constraintStart_toStartOf="@+id/textView13"
+                app:layout_constraintTop_toTopOf="@+id/textViewAddress" />
+
+            <TextView
+                android:id="@+id/textView15"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/title_detecting_location"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/sp_18"
+                app:layout_constraintEnd_toStartOf="@+id/guideline"
+                app:layout_constraintStart_toStartOf="@+id/textView14"
+                app:layout_constraintTop_toTopOf="@+id/textViewDetectingLocation" />
+
+            <TextView
+                android:id="@+id/textView16"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/title_time"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/sp_18"
+                app:layout_constraintEnd_toStartOf="@+id/guideline"
+                app:layout_constraintStart_toStartOf="@+id/textView15"
+                app:layout_constraintTop_toTopOf="@+id/textViewTime" />
+
+            <TextView
+                android:id="@+id/textView17"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_20"
+                android:text="@string/text_status"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/sp_18"
+                app:layout_constraintEnd_toStartOf="@+id/guideline"
+                app:layout_constraintStart_toStartOf="@+id/textView16"
+                app:layout_constraintTop_toBottomOf="@+id/textView16" />
+
+            <TextView
+                android:id="@+id/textView18"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_20"
+                android:text="@string/title_place_point"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/sp_18"
+                app:layout_constraintEnd_toStartOf="@+id/guideline"
+                app:layout_constraintStart_toStartOf="@+id/textView17"
+                app:layout_constraintTop_toBottomOf="@+id/textView17" />
+
+            <TextView
+                android:id="@+id/textView19"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/title_description"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/sp_18"
+                app:layout_constraintEnd_toStartOf="@+id/guideline"
+                app:layout_constraintStart_toStartOf="@+id/textView18"
+                app:layout_constraintTop_toTopOf="@+id/textViewDescription" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

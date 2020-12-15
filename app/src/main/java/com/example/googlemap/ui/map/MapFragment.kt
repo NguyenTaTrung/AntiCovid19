@@ -5,15 +5,19 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.Canvas
+import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import androidx.activity.OnBackPressedCallback
 import androidx.core.content.ContextCompat
+import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.example.googlemap.R
 import com.example.googlemap.base.BaseFragment
 import com.example.googlemap.data.model.CaseInformation
-import com.example.googlemap.data.model.DetailCase
+import com.example.googlemap.data.model.Place
 import com.example.googlemap.databinding.FragmentMapBinding
 import com.example.googlemap.ui.dialog.BackgroundPermissionDialog
 import com.example.googlemap.ui.dialog.PermissionRequestType
@@ -37,13 +41,17 @@ class MapFragment :
     private var client: FusedLocationProviderClient? = null
     private var mapFragment: SupportMapFragment? = null
     private var marker: Marker? = null
+    private var myBinding: FragmentMapBinding? = null
     private var markers = mutableListOf<Marker?>()
     private var newMarkers = mutableListOf<Marker?>()
     private var markerMap = mutableMapOf<Marker?, CaseInformation>()
-    private var newMarkerMap = mutableMapOf<Marker?, DetailCase>()
+    private var newMarkerMap = mutableMapOf<Marker?, Place>()
     private val viewModel by viewModel<MapViewModel>()
     private var canBackPress = true
+    private var visibleMoreMarker = false
+    private var visiblePlace = false
     private var bottomNavigationListener: BottomNavigationListener? = null
+    private var previousView: View? = null
 
     override val layoutResources: Int
         get() = R.layout.fragment_map
@@ -56,22 +64,43 @@ class MapFragment :
         if (context is BottomNavigationListener) bottomNavigationListener = context
     }
 
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        if (previousView == null) {
+            myBinding = DataBindingUtil.inflate(inflater, layoutResources, container, false)
+            mapFragment = SupportMapFragment.newInstance()
+            mapFragment?.let { childFragmentManager.beginTransaction().replace(R.id.map, it).commit() }
+//            mapFragment =
+//                childFragmentManager.findFragmentById(R.id.map) as? SupportMapFragment
+            previousView = myBinding?.root
+        } else {
+            (previousView?.parent as? ViewGroup)?.removeAllViews()
+        }
+        return previousView
+    }
+
     override fun initData() {
-        mapFragment =
-            childFragmentManager.findFragmentById(R.id.map) as? SupportMapFragment
         client = LocationServices.getFusedLocationProviderClient(requireActivity())
 
         if (!requireContext().hasPermission(Manifest.permission.ACCESS_FINE_LOCATION)) {
             BackgroundPermissionDialog.newInstance(PermissionRequestType.FINE_LOCATION).show(childFragmentManager, null)
         } else {
-            getCurrentLocation()
+            if (canBackPress) getCurrentLocation()
             viewModel.startLocationUpdates()
         }
         observeData()
     }
 
     override fun initAction() {
-//        imageButtonRefresh.setOnClickListener { getCurrentLocation() }
+        textViewSeeDetail.setOnClickListener {
+            myBinding?.caseInformation?.let {
+                visibleMoreMarker = true
+                findNavController().navigate(MapFragmentDirections.actionToDetailCaseInformationFragment(it.id))
+            }
+        }
 
         requireActivity().onBackPressedDispatcher
             .addCallback(viewLifecycleOwner, object : OnBackPressedCallback(true) {
@@ -83,6 +112,7 @@ class MapFragment :
                         newMarkers.forEach {
                             it?.isVisible = false
                         }
+                        visiblePlace = false
                         cardInformationDetail.visibility = View.GONE
                         cardInformation.visibility = View.VISIBLE
                         newMarkers.clear()
@@ -96,14 +126,15 @@ class MapFragment :
     }
 
     override fun onMarkerClick(marker: Marker?): Boolean {
-        if (marker?.tag?.equals("a") == true) {
+        if (marker?.tag?.equals("case") == true) {
             val information = markerMap[marker]
             if (marker != this.marker) {
                 cardInformation.visibility = View.VISIBLE
-                binding.caseInformation = information
+                myBinding?.caseInformation = information
                 markers.forEach {
                     it?.isVisible = false
                 }
+                visiblePlace = true
                 information?.id?.let { viewModel.getListDetailInformation(it) }
             } else {
                 cardInformation.visibility = View.GONE
@@ -113,7 +144,7 @@ class MapFragment :
             if (marker != this.marker) {
                 cardInformation.visibility = View.GONE
                 cardInformationDetail.visibility = View.VISIBLE
-                binding.detailCase = newMarkerMap[marker]
+                myBinding?.detailCase = newMarkerMap[marker]
             } else {
                 cardInformation.visibility = View.GONE
                 cardInformationDetail.visibility = View.GONE
@@ -141,16 +172,19 @@ class MapFragment :
     override fun onDestroy() {
         super.onDestroy()
         bottomNavigationListener = null
+        myBinding = null
     }
 
     private fun observeData() = with(viewModel) {
         listCaseInformation.observe(viewLifecycleOwner, Observer {
-            addMoreLocation(it)
+            if (!visibleMoreMarker) addMoreLocation(it)
         })
 
         listDetailInformation.observe(viewLifecycleOwner, Observer {
-            canBackPress = false
-            addNewLocation(it)
+            if (visiblePlace) {
+                canBackPress = false
+                addNewLocation(it)
+            }
         })
 
         error.observe(viewLifecycleOwner, Observer {
@@ -163,9 +197,9 @@ class MapFragment :
         client?.lastLocation?.addOnSuccessListener {
             it?.let { location ->
                 mapFragment?.getMapAsync { map ->
-                    val sydney = LatLng(location.latitude, location.longitude)
-                    marker = map?.addMarker(MarkerOptions().position(sydney).title(""))
-                    map?.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney, 16F))
+                    val currentPosition = LatLng(location.latitude, location.longitude)
+                    marker = map?.addMarker(MarkerOptions().position(currentPosition).title(""))
+                    map?.moveCamera(CameraUpdateFactory.newLatLngZoom(currentPosition, 16F))
                 }
             }
         }
@@ -179,7 +213,7 @@ class MapFragment :
                     MarkerOptions().position(sydney)
                         .icon(bitmapDescriptorFromVector(requireContext(), R.drawable.ic_warning))
                 )
-                marker?.tag = "a"
+                marker?.tag = "case"
                 markers.add(marker)
                 markerMap[marker] = data[i]
                 map?.setOnMarkerClickListener(this)
@@ -187,7 +221,7 @@ class MapFragment :
         }
     }
 
-    private fun addNewLocation(data: List<DetailCase>) {
+    private fun addNewLocation(data: List<Place>) {
         for (i in data.indices) {
             mapFragment?.getMapAsync { map ->
                 val sydney = LatLng(data[i].lat, data[i].lon)
@@ -196,7 +230,7 @@ class MapFragment :
                         .icon(bitmapDescriptorFromVector(requireContext(), R.drawable.ic_baseline_accessibility_24)
                     )
                 )
-                marker?.tag = "b"
+                marker?.tag = "place"
                 newMarkers.add(marker)
                 newMarkerMap[marker] = data[i]
                 map?.setOnMarkerClickListener(this)

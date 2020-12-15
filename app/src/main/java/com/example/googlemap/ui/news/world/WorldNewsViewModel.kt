@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import com.example.googlemap.base.RxViewModel
 import com.example.googlemap.data.model.News
 import com.example.googlemap.data.resource.repository.InformationRepository
+import com.example.googlemap.utils.PatternConst.REGEX_IMAGE_URL
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.kotlin.addTo
 import io.reactivex.rxjava3.schedulers.Schedulers
@@ -20,7 +21,7 @@ class WorldNewsViewModel(repository: InformationRepository) : RxViewModel() {
 
     init {
         _isLoading.value = true
-        val pattern = Pattern.compile("<img[^>]+src\\s*=\\s*['\"]([^'\"]+)['\"][^>]*>")
+        val pattern = Pattern.compile(REGEX_IMAGE_URL)
         var image: String? = null
         repository.getWorldNewsVNExpress()
             .subscribeOn(Schedulers.io())
@@ -28,11 +29,10 @@ class WorldNewsViewModel(repository: InformationRepository) : RxViewModel() {
             .subscribe({
                 it.channel?.item?.forEach { item ->
                     val matcher = pattern.matcher(item.description.toString())
-                    if (matcher.find()) {
-                        image = matcher.group(1)
-                    }
+                    if (matcher.find()) image = matcher.group(1)
 
-                    if (item.title?.contains("Covid-19") == true || item.title?.contains("nCoV") == true) {
+                    if (item.title?.contains("Covid-19") == true ||
+                        item.title?.contains("nCoV") == true) {
                         listNews.add(News(item.title, item.link, item.pubDate, image))
                     }
                 }

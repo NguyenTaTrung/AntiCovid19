@@ -30,6 +30,7 @@ data class Country(
     @SerializedName("Premium")
     val premium: Premium
 ) : Parcelable {
+
     companion object {
         val diffUtil = object : DiffUtil.ItemCallback<Country>() {
             override fun areItemsTheSame(oldItem: Country, newItem: Country): Boolean {

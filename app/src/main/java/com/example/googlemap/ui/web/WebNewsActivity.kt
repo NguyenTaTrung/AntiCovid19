@@ -16,7 +16,7 @@ class WebNewsActivity : AppCompatActivity() {
 
         val url = intent?.getStringExtra(EXTRA_LINK_WEB)
         webViewNews.webViewClient = WebViewClient()
-        webViewNews.loadUrl(url.toString())
+        url?.let { webViewNews.loadUrl(it) }
     }
 
     companion object {

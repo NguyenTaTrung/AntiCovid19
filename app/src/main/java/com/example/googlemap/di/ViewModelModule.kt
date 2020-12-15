@@ -5,6 +5,7 @@ import com.example.googlemap.ui.case.CaseShareViewModel
 import com.example.googlemap.ui.detail.DetailCountryViewModel
 import com.example.googlemap.ui.dialog.filter.SearchFilterViewModel
 import com.example.googlemap.ui.home.HomeViewModel
+import com.example.googlemap.ui.information.DetailCaseInformationViewModel
 import com.example.googlemap.ui.main.MainViewModel
 //import com.example.googlemap.ui.main.MainViewModel
 import com.example.googlemap.ui.map.MapViewModel
@@ -29,4 +30,5 @@ val viewModelModule = module {
     viewModel { CaseInformationViewModel(get()) }
     viewModel { SearchFilterViewModel(get()) }
     viewModel { CaseShareViewModel() }
+    viewModel { DetailCaseInformationViewModel(get()) }
 }

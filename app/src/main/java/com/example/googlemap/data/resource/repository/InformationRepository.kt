@@ -16,7 +16,9 @@ class InformationRepository(
 
     override fun getInformation(): Observable<List<CaseInformation>> = remote.getInformation()
 
-    override fun getDetailInformation(id: Int): Observable<List<DetailCase>> = remote.getDetailInformation(id)
+    override fun getAllPlace(id: Int): Observable<List<Place>> = remote.getAllPlace(id)
+
+    override fun getDetailCase(id: Int): Observable<DetailCase> = remote.getDetailCase(id)
 
     override fun getSummaryData(): Observable<Summary> = remote.getSummaryData()
 

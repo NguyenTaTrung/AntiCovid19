@@ -1,9 +1,6 @@
 package com.example.googlemap.data.resource.local.dao
 
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.Query
-import androidx.room.Update
+import androidx.room.*
 import com.example.googlemap.data.resource.local.entity.Information
 import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Flowable
