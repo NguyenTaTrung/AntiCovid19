@@ -44,6 +44,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".ui.web.WebNewsActivity" />
+        <activity android:name=".ui.information.DetailCaseActivity" />
 
         <receiver android:name=".broadcast.LocationUpdatesBroadcastReceiver"
             android:exported="true">

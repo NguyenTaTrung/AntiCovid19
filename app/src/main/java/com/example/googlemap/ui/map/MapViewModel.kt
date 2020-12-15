@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.googlemap.base.RxViewModel
 import com.example.googlemap.data.model.CaseInformation
-import com.example.googlemap.data.model.DetailCase
+import com.example.googlemap.data.model.Place
 import com.example.googlemap.data.resource.repository.InformationRepository
 import com.example.googlemap.data.resource.repository.LocationRepository
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
@@ -21,8 +21,8 @@ class MapViewModel(
     val listCaseInformation: LiveData<List<CaseInformation>>
         get() = _listInformation
 
-    private val _listDetailInformation = MutableLiveData<List<DetailCase>>()
-    val listDetailInformation: LiveData<List<DetailCase>>
+    private val _listDetailInformation = MutableLiveData<List<Place>>()
+    val listDetailInformation: LiveData<List<Place>>
         get() = _listDetailInformation
 
     init {
@@ -38,7 +38,7 @@ class MapViewModel(
     }
 
     fun getListDetailInformation(id: Int) {
-        repository.getDetailInformation(id)
+        repository.getAllPlace(id)
             .subscribeOn(io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({

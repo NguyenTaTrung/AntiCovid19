@@ -145,6 +145,12 @@
     <string name="emptyLocationDatabaseMessage">To start receiving location updates, please click the button below!</string>
 
     <string name="sms_content">Recipients: Deputy Head of Editorial Department, TS.BS. Ha Anh Duc, Chief of Office of the Ministry of Health.\n\nContent:</string>
+    <string name="title_detail_case_information">Case details</string>
+    <string name="title_sex">Sex:</string>
+    <string name="text_status">Status:</string>
+    <string name="title_place_point">Place point to:</string>
+    <string name="title_description">Description:</string>
+    <string name="title_place_went_to">The place went to</string>
 
     <plurals name="num_locations_reported">
         <item quantity="zero">No location reported</item>

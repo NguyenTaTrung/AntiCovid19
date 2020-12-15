@@ -75,6 +75,8 @@ class CaseInformationFragment :
     }
 
     private fun openDetailCase(caseInformation: CaseInformation, position: Int) {
-
+        findNavController().navigate(
+            CaseInformationFragmentDirections.actionToDetailCaseInformationFragment(caseInformation.id)
+        )
     }
 }
